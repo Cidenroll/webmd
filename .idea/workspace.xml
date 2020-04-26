@@ -2,32 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cea311e8-e74f-45bd-9da2-fa8c38f10326" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/WEBMD/web.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/script/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/script/modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DoctorRelationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DoctorRelationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MainPageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainPageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/NotFoundController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/NotFoundController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/OCRController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/OCRController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PatientRelationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PatientRelationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SubmitFormFromPatientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SubmitFormFromPatientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UploadMedicalFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UploadMedicalFile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/DoctorPatientFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/DoctorPatientFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Model/UserRegistrationFormModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Model/UserRegistrationFormModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/PatientDoctorFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/PatientDoctorFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/UserRegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserRegistrationFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Parser/AnalysisParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser/AnalysisParser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Parser/MedicalReportParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser/MedicalReportParser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/homepage/homepage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/homepage/homepage.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medAccount/medacc.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medAccount/medacc.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medAccount/medcomment.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medAccount/medcomment.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medAccount/meddetails.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medAccount/meddetails.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medAccount/patacc.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medAccount/patacc.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medAccount/viewcomment.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medAccount/viewcomment.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medform/annualcheck.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medform/annualcheck.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/notfound.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/notfound.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/register.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/terms.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/terms.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/upload/mdfile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/upload/mdfile.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,20 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="web.config" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web.config">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="30" column="23" lean-forward="true" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+            <state relative-caret-position="23">
+              <caret line="1" column="20" lean-forward="true" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -127,6 +94,7 @@
         <option value="$PROJECT_DIR$/templates/terms.html.twig" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/WEBMD/web.config" />
+        <option value="$PROJECT_DIR$/web.config" />
       </list>
     </option>
   </component>
@@ -242,9 +210,9 @@
       <path value="$PROJECT_DIR$/vendor/nikolaposa/version" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="1898" />
-    <option name="y" value="161" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1912" />
+    <option name="y" value="117" />
     <option name="width" value="1934" />
     <option name="height" value="723" />
   </component>
@@ -265,11 +233,6 @@
               <item name="webmd" type="b2602c69:ProjectViewProjectNode" />
               <item name="webmd" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webmd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webmd" type="462c0819:PsiDirectoryNode" />
-              <item name="WEBMD" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -322,15 +285,15 @@
       <workItem from="1587734372774" duration="34262000" />
       <workItem from="1587800726690" duration="69461000" />
       <workItem from="1587927083430" duration="727000" />
-      <workItem from="1587928103910" duration="1105000" />
+      <workItem from="1587928103910" duration="2467000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136908000" />
+    <option name="totallyTimeSpent" value="138270000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1484375" />
@@ -372,13 +335,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Validator/UniqueUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/DoctorToPatientRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -692,13 +648,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WEBMD/web.config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -708,8 +657,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="30" column="23" lean-forward="true" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+        <state relative-caret-position="548">
+          <caret line="41" column="30" lean-forward="true" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="20" lean-forward="true" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
         </state>
       </provider>
     </entry>
