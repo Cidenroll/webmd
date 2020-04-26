@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    MSINGMD|Welcome
+{% endblock %}
+
+{% block body %}
+    {% apply inline_css %}
+        <html>
+        <head>
+            <style>
+                tr:nth-child(odd) {
+                    background-color: #428bca;
+                }
+
+                tr:nth-child(even) {
+                    background-color: #428bca;
+                }
+
+                th {
+                    background-color: #6acbff;
+                }
+            </style>
+        </head>
+        </html>
+    {% endapply %}
+
+    <center><h4>Welcome to <span style="color: cadetblue">MSINGMD</span></h4></center>
+    {% if app.user %}
+        <center>
+        <div class="mb-3">
+            You are logged in as <a class="font-weight-bold" href="{{ path('medAccount') }}">{{ app.user.username }}</a>, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+            {% if app.user.userType == 'doctor' %}
+                <div class="mb-3">
+                    Your medical files are below:
+                </div>
+            {% else %}
+                <div class="mb-3">
+                    Upload your medical file <a href="{{ path('uploadfile') }}">here</a>.
+                </div>
+                {% if (userFiles is defined) and (userFiles is not empty) %}
+                    <div class="table-responsive-lg">
+                        <table class="table table-striped table-bordered d-lg-table-cell">
+                            <tr>
+                                <th>File</th>
+                                <th>Type</th>
+                                <th>Options</th>
+                            </tr>
+                            {% for userFile in userFiles %}
+                                <tr>
+                                    {% set userFileNamePrev = userFile.fileName|split('_') %}
+                                    {% set userFileName = userFileNamePrev[1] %}
+                                    <td>{{ userFileName }}</td>
+                                    <td>{{ userFile.docType }}</td>
+                                    <td>
+                                        <a style="font-weight: bold" href="{{ asset('uploads/pdfs/confirmed/'~userFile.fileName) }}">View</a>
+                                        <a style="font-weight: bold" href="{{ path('medform', {'id': userFile.id} ) }}">Load</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+
+                {% endif %}
+            {% endif %}
+        <br />
+
+        </center>
+
+
+    {% else %}
+        <center>
+        <div style="align-content: center;">
+            <p>
+                <div >
+                    <a class="btn btn-lg btn-primary" href="{{ path('app_login') }}">Login</a>&nbsp;
+                    <a class="btn btn-lg btn-primary" href="{{ path('app_register') }}">Register</a>
+                </div>
+            </p>
+        </div>
+        </center>
+
+    {% endif %}
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('script/modal.js') }}"></script>
+{% endblock %}
