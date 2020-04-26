@@ -9,7 +9,17 @@
 namespace App\Controller;
 
 
-class NotFoundController
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+
+class NotFoundController extends AbstractController
 {
 
+    /**
+     * @Route("/notfound", name="notFound")
+     */
+    public function NotFoundIndex()
+    {
+        return $this->render('notfound.html.twig',[]);
+    }
 }

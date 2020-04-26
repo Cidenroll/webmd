@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body  %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <center>
+                    You are logged in as <a class="font-weight-bold">{{ app.user.username }}</a> ({{ app.user.userType }})
+                </center>
+            </div>
+        </div>
+        <p></p>
+        <div class="row">
+            <div class="col">
+                <center>
+                    <a href="{{ path('medAccount') }}" class="font-weight-bold">Back</a>
+                </center>
+            </div>
+            <div class="col">
+            <center>
+                Viewing <span style="font-weight: bold">{{ patient }}</span>'s files
+            </center>
+            </div>
+            <div class="col"></div>
+        </div>
+        <p></p>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <div class="table-responsive-lg">
+                    <table class="table table-striped table-bordered d-lg-table-cell">
+                        <tr>
+                            <th>Document type</th><th>Comment</th><th>Options</th>
+                        </tr>
+
+                        {% for key, file in files %}
+                            <tr>
+                                <td>
+                                    {{ file.docType }}
+                                </td>
+                                <td>
+                                    <div id="comment_{{ loop.index }}" >
+                                        {% if file.comment %}
+                                            <i class="fas fa-check"></i>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td>
+                                    <a title="View original file" style="font-weight: bold" href="{{ asset('uploads/pdfs/confirmed/'~file.fileName) }}"><i class="fa fa-eye"></i></a>
+                                    <a title="Medical comment" href="{{ path('medicalComment', {'file': key, 'id':  app.request.attributes.get('id') }) }}"><i class="fas fa-comment-medical"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            <style>
+                body{
+                    background-color: #cbeeff;
+                }
+
+                tr:nth-child(odd) {
+                    background-color: #428bca;
+                }
+
+                tr:nth-child(even) {
+                    background-color: #428bca;
+                }
+
+                th {
+                    background-color: #6acbff;
+                }
+            </style>
+        {% endblock %}
+    </head>
+    <body>
+        <nav style="background-color: #061550;" class="navbar navbar-default rounded-sm">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="text-black-50" href="{{ path('homepage') }}" >
+                        <img src="{{ asset('images/msing.png') }}"  height="50px">
+                    </a>
+                </div>
+                {% if app.user %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{ path('app_register') }}"><span style="color: white;">Register</span></a></li>
+                        <li><a href="{{ path('app_logout') }}"><span style="color: white;">Logout</span></a></li>
+                    </ul>
+                {% else %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{ path('app_register') }}"><span style="color: white;">Register</span></a></li>
+                        <li><a href="{{ path('app_login') }}"><span style="color: white;">Login</span></a></li>
+                    </ul>
+                {% endif %}
+
+            </div>
+        </nav>
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+
+    </body>
+</html>

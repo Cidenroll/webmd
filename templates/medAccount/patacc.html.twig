@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    MSINGMD|Patient account
+{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <center>
+                        You are logged in as <a class="font-weight-bold">{{ app.user.username }}</a> ({{ app.user.userType }})
+                    </center>
+                </div>
+                <div class="col">
+                    <center>
+                    <a  href="{{ path('uploadfile') }}">Medical upload</a>
+                    </center>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col-6 form-control-lg">
+                    <div>
+                        <span class="form-row"> {{ form_start(PatientToDocForm)}} </span>
+                        {{ form_row(PatientToDocForm.doctorId) }}
+                        <button class="btn btn-primary btn-block" type="submit">
+                            Add doctor
+                        </button>
+                        {{ form_end(PatientToDocForm) }}
+
+                    </div>
+                </div>
+                <div class="col-6 align-content-center">
+                    <div class="table-responsive-lg">
+                        <table class="table table-striped table-bordered d-lg-table-cell">
+                            <tr>
+                                <th>Your doctors</th><th>Number of files assigned</th>
+                            </tr>
+                            {% for doctorMail, fileAssoc in docsList %}
+                                <tr>
+                                    <td>
+                                        {{ doctorMail }}
+                                    </td>
+                                    <td>
+                                        {{ fileAssoc }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

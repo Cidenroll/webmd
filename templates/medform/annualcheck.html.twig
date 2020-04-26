@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <center>
+    {% if app.user %}
+    <div class="mb-3">
+        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a> ({{ app.user.userType }})
+    </div>
+    <div class="container">
+        <div>
+            <form method="post" action="{{ path('patientFormSubmit') }}">
+                <table class="table table-striped table-bordered ">
+                    <tr><th></th><th></th></tr>
+                    <tr>
+                        <td><label for="email">Email</label></td>
+                        <td><input class="form-control input-group-sm"  type="text" name="email" value="{{ app.user.email }}" readonly></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="sex">Sex</label></td>
+                        <td><input class="form-control input-group-sm" type="text" name="sex" value="{{ patientInfo.sex }}" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="cnp">CNP</label></td>
+                        <td><input class="form-control input-group-sm" type="text" name="cnp" value="{{ patientInfo.cnp }}" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="age">Age</label></td>
+                        <td><input class="form-control input-group-sm" type="text" name="age" value="{{ patientInfo.age }}" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="institution">Institution</label></td>
+                        <td><input class="form-control input-group-sm" type="text" name="institution" value="{{ patientInfo.institute }}" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="dates">Dates</label></td>
+                        <td><input class="form-control input-group-sm" type="text" name="dates" value="{{ patientInfo.dates }}" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="resultSummary">Result Summary</label></td>
+                        <td><textarea class="form-control rounded-0" rows="10" name="resultSummary" readonly>{{ patientInfo.diagnostic }}</textarea></td>
+                    </tr>
+                    {% if patientInfo.highestVals is not empty %}
+                    <tr bgcolor="#ff4662">
+                        <td bgcolor="#ff4662"><label for="diagnostic">Diagnostic</label></td>
+                        <td bgcolor="#ff4662">
+                            <ul style="list-style-type:none;">
+                                {% for key, val in patientInfo.highestVals %}
+                                    <li>{{ key }} : {{ val }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% set highvalues = '' %}
+                            {% for key, val in patientInfo.highestVals %}
+                                {% set highvalues= highvalues~" "~key~'='~val~"; " %}
+                            {% endfor %}
+
+                            <input hidden name="diagnostic" value="{{ highvalues }}">
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if patientDoctors is not empty %}
+                        <tr>
+                            <td><label for="doctor">Assign doctor</label></td>
+                            <td>
+                               <select id="doctor" name="doctor">
+                                   {% for doc in patientDoctors %}
+                                      <option value="{{ doc.id }}">{{ doc.email }}</option>
+                                   {% endfor %}
+                               </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="checkMail">Send reminder</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="checkMail">
+                            </td>
+                        </tr>
+                    {% endif %}
+                </table>
+                <input type="hidden" name="userFileId" value="{{ userFileId }}">
+                <div class="form-group">
+                    <input type="submit" name="submit">
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+    {% endif %}
+    </center>
+{% endblock %}

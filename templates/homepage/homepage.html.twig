@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    MSINGMD|Welcome
+{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <center>
+            {% if app.user.userType == 'doctor' %}
+                <div class="mb-3">
+                    You are logged in as <a class="font-weight-bold" href="{{ path('medAccount') }}">{{ app.user.username }}</a> ({{ app.user.userType }})
+                </div>
+            {% else %}
+                <div class="mb-3">
+                    You are logged in as <a class="font-weight-bold" href="{{ path('patAccount') }}">{{ app.user.username }}</a> ({{ app.user.userType }})
+                </div>
+            {% endif %}
+
+            {% if app.user.userType == 'doctor' %}
+                <div class="mb-3">
+                    Click on your email to get into your account.
+                </div>
+
+                {# IS A PATIENT#}
+            {% else %}
+                <div class="mb-3">
+                    Upload your medical file <a style="font-weight: bold" href="{{ path('uploadfile') }}">here</a>.
+                </div>
+                {% if (userFiles is defined) and (userFiles is not empty) %}
+                    <div class="table-responsive-lg">
+                        <table class="table table-striped table-bordered d-lg-table-cell">
+                            <tr>
+                                <th>File</th>
+                                <th>Type</th>
+                                <th>Submitted to</th>
+                                <th>Comments</th>
+                                <th>Options</th>
+                            </tr>
+                            {% for key, userFile in userFiles %}
+
+                                <tr>
+                                    <td>{{ userFile.fileName|split('_')[1] }}</td>
+                                    <td>{{ userFile.docType }}</td>
+                                    <td>{{ userFile.doctorMail }}</td>
+                                    <td>
+                                        {% if userFile.comment %}
+                                            <i class="fas fa-check"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a title="View document" style="font-weight: bold" href="{{ asset('uploads/pdfs/confirmed/'~userFile.fileName) }}" target="_blank"><i class="fa fa-eye"></i></a>
+                                        <a title="Submit document" style="font-weight: bold" href="{{ path('medform', {'id': key} ) }}"><i class="fas fa-cloud-upload-alt"></i></a>
+                                        {% if userFile.comment %}
+                                            <a title="View medical comment" style="font-weight: bold" href="{{ path('viewComment', {'id': key} ) }}"><i class="fas fa-comment-medical"></i></a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+
+                {% endif %}
+            {% endif %}
+        <br />
+
+       </center>
+    {% endif %}
+
+
+
+{% endblock %}

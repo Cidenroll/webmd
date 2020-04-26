@@ -11,45 +11,48 @@ namespace App\Form;
 
 use App\Entity\DoctorToPatient;
 use App\Entity\RelationsDp2;
+use App\Entity\RelationsPd2;
 use App\Repository\DoctorToPatientRepository;
 use App\Repository\RelationsDp2Repository;
+use App\Repository\RelationsPd2Repository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Security;
 
-class DoctorPatientFormType extends AbstractType
+class PatientDoctorFormType extends AbstractType
 {
     /**
      * @var Security
      */
     private $security;
     /**
-     * @var DoctorToPatientRepository
+     * @var RelationsPd2Repository
      */
-    private $doctorToPatientRepository;
+    private $pd2Repository;
+
 
     /**
      * UserFileFormType constructor.
      * @param Security $security
+     * @param RelationsPd2Repository $pd2Repository
      */
-    public function __construct(Security $security, RelationsDp2Repository $relationsDp2Repository )
+    public function __construct(Security $security, RelationsPd2Repository $pd2Repository)
     {
         $this->security = $security;
-
-        $this->doctorToPatientRepository = $relationsDp2Repository;
+        $this->pd2Repository = $pd2Repository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $currentUser = $this->security->getUser();
         $builder
-            ->add('patientId', ChoiceType::class, [
-                'label' =>  'Patient',
+            ->add('doctorId', ChoiceType::class, [
+                'label' =>  'Doctor',
                 'mapped'    =>  false,
                 'required'  =>  false,
-                'choices'   =>  $this->doctorToPatientRepository->getRemainingAvailablePatientsForDoctor($currentUser->getId())
+                'choices'   =>  $this->pd2Repository->getRemainingAvailableDoctorsForPatient($currentUser->getId())
             ])
         ;
     }
@@ -57,7 +60,7 @@ class DoctorPatientFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => DoctorToPatient::class,
+            'data_class' => RelationsPd2::class,
         ]);
     }
 }

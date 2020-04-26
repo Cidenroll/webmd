@@ -1,52 +1,33 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    MSINGMD|Comment on file
+{% endblock %}
 
 {% block body  %}
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <center>
-                    <a href="{{ path('medAccount') }}" class="font-weight-bold">Back</a>
-                </center>
-            </div>
-            <div class="col">
+        <div class="col">
             <center>
-                Viewing <span style="font-weight: bold">{{ patient }}</span>'s files
+                You are logged in as <a class="font-weight-bold">{{ app.user.username }}</a> ({{ app.user.userType }})
             </center>
-            </div>
-            <div class="col"></div>
         </div>
         <p></p>
         <div class="row">
-            <div class="col"></div>
-            <div class="col">
-                <div class="table-responsive-lg">
-                    <table class="table table-striped table-bordered d-lg-table-cell">
-                        <tr>
-                            <th>Document type</th><th>Comment</th><th>Options</th>
-                        </tr>
-
-                        {% for key, file in files %}
-                            <tr>
-                                <td>
-                                    {{ file.docType }}
-                                </td>
-                                <td>
-                                    <div id="comment_{{ loop.index }}">
-                                        {{ file.comment }}
-                                    </div>
-                                </td>
-                                <td>
-                                    <a style="font-weight: bold" href="{{ asset('uploads/pdfs/confirmed/'~file.fileName) }}"><i class="fa fa-eye"></i></a>
-                                    <a href="{{ path('medicalComment', {'file': key, 'id':  app.request.attributes.get('id') }) }}"><i class="fas fa-comment"></i></a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                </div>
-            </div>
-            <div class="col"></div>
+            <center>
+                <h5>Currently commenting on user:  {{ userMail }} ({{ fileName }})</h5>
+            </center>
         </div>
+        <div class="row form-control-lg">
 
+           <form method="post" action="">
+               <div class="form-group ">
+                   <textarea class="form-control rounded-0 col-lg-12" cols="200%" rows="30" name="comment">{{ comment }}</textarea>
+               </div>
+               <div class="form-group">
+                   <input type="submit" name="submit" value="Comment">
+               </div>
+           </form>
+
+        </div>
     </div>
 {% endblock %}

@@ -31,4 +31,9 @@ class UserRegistrationFormModel
     public $agreeTerms;
 
     public $subscribeToNewsletter;
+
+    /**
+     * @Assert\NotBlank()
+     */
+    public $userType;
 }
