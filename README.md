@@ -5,8 +5,6 @@ for the SmartDocManager framework, for the HACKATHON contest.
 
 ## Setup
 
-If you've just downloaded the code, congratulations!!
-
 To get it working, follow these steps:
 
 **Download Composer dependencies**
