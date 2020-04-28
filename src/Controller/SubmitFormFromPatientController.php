@@ -13,8 +13,11 @@ use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
+use Symfony\Component\Notifier\Message\SmsMessage;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Notifier\Texter;
+use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
@@ -34,20 +37,24 @@ class SubmitFormFromPatientController extends AbstractController
      */
     private $userFileRepository;
 
+
     public function __construct(Security $security, UserRepository $userRepository, UserFileRepository $userFileRepository)
     {
         $this->security = $security;
         $this->userRepository = $userRepository;
         $this->userFileRepository = $userFileRepository;
+
     }
 
     /**
      * @Route("/patientFormSubmit", name="patientFormSubmit")
      * @param Request $request
-     * @param \Swift_Mailer $mailer
+     * @param MailerInterface $mailer
+     * @param TexterInterface $textInterface
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Symfony\Component\Notifier\Exception\TransportExceptionInterface
      */
-    public function  submitPatientForm(Request $request, MailerInterface $mailer)
+    public function  submitPatientForm(Request $request)
     {
         if ($request->getMethod() == 'POST'){
 
@@ -62,6 +69,12 @@ class SubmitFormFromPatientController extends AbstractController
             $docId = $request->get('doctor');
             $checkMail = $request->get('checkMail');
             $userFileId = $request->get('userFileId');
+
+
+
+            if ($checkMail) {
+
+            }
 
 //            if ($checkMail) {
 //

@@ -18,6 +18,7 @@ use App\Repository\UserFileRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Smalot\PdfParser\Parser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Security\Core\Security;
 
 
@@ -43,6 +44,7 @@ class OCRController extends AbstractController
      * @var RelationsPd2Repository
      */
     private $pd2Repository;
+
 
     public function __construct(Security $security, UserFileRepository $userFileRepository, RelationsPd2Repository $pd2Repository)
     {

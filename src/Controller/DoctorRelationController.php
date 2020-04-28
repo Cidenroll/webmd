@@ -150,6 +150,8 @@ class DoctorRelationController extends AbstractController
            $em = $this->getDoctrine()->getManager();
            $em->flush();
 
+
+
            return $this->redirect($this->generateUrl('medDetails', ['id'   =>  $id]));
 
         }
