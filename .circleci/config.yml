@@ -32,8 +32,6 @@ jobs:
       - run: sudo apt-get install imagemagick
       - run: sudo apt install libmagickwand-dev imagemagick
       - run: sudo pecl install imagick
-      - run: apt-get install docker-php-ext-install intl
-      - run: sudo pecl install zip
       - run:
             name:   Wait for MYSQL
             command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
