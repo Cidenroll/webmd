@@ -13,10 +13,6 @@ use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Notifier\Message\SmsMessage;
-use Symfony\Component\Notifier\Notification\Notification;
-use Symfony\Component\Notifier\NotifierInterface;
-use Symfony\Component\Notifier\Texter;
 use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
@@ -71,21 +67,16 @@ class SubmitFormFromPatientController extends AbstractController
             $userFileId = $request->get('userFileId');
 
 
-
             if ($checkMail) {
 
             }
 
 //            if ($checkMail) {
+//                $notification = (new Notification('New Invoice'))
+//                    ->content('You got a new invoice for 15 EUR.')
+//                    ->importance(Notification::IMPORTANCE_HIGH);
 //
-//                $email = (new Email())
-//                    ->from('rusuflorinc@mexample.com')
-//                    ->to('cromchardel@gmail.com')
-//                    ->subject('Time for Symfony Mailer!')
-//                    ->text('Sending emails is fun again!')
-//                    ->html('<p>See Twig integration for better HTML integration!</p>');
-//
-//                $mailer->send($email);
+//                $notifier->send($notification, new Recipient('wouter@wouterj.nl'));
 //            }
 
 

@@ -10,6 +10,6 @@ return [
     Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
     Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
-    Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle::class => ['all' => true],
     Shivas\VersioningBundle\ShivasVersioningBundle::class => ['all' => true],
+    Aws\Symfony\AwsBundle::class => ['all' => true],
 ];
