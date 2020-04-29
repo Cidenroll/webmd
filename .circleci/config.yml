@@ -32,7 +32,7 @@ jobs:
       - run: sudo apt-get install imagemagick
       - run: sudo apt install libmagickwand-dev imagemagick
       - run: sudo pecl install imagick
-      - run: sudo pecl install sodium
+      - run: apt-get install -y zlib1g-dev libicu-dev g++ \ && docker-php-ext-configure intl \ && docker-php-ext-install intl
       - run: sudo pecl install zip
       - run:
             name:   Wait for MYSQL
@@ -42,4 +42,4 @@ jobs:
       - run: composer install
 
       # prepare the database
-      - run: php bin/console doctrine:migrations:migrate --env=test --no-interaaction
+      - run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
