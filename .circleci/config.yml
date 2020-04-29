@@ -31,7 +31,9 @@ jobs:
       - run: sudo apt-get update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo apt-get install imagemagick
       - run: sudo docker-php-ext-install pdo_mysql
-      - run: sudo apt-get install php-imagick
+      - run: sudo apt install libmagickwand-dev imagemagick php-dev
+      - run: sudo pecl install imagick
+      - run: sudo service php7.2-fpm reload
       - run:
             name:   Wait for MYSQL
             command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
