@@ -44,4 +44,4 @@ jobs:
       - run: composer install
 
       # prepare the database
-      - run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
+      - run: php bin/console doctrine:migrations:migrate --env=dev --no-interaction
