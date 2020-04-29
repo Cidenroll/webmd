@@ -268,9 +268,9 @@
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-43" />
-    <option name="y" value="42" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="210" />
+    <option name="y" value="17" />
     <option name="width" value="1934" />
     <option name="height" value="723" />
   </component>
