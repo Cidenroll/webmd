@@ -49,6 +49,13 @@ jobs:
        - image: circleci/php:7.2-apache-stretch-node-browsers
     steps:
         - checkout
+        - run: sudo apt-get install imagemagick
+        - run: sudo apt install libmagickwand-dev imagemagick
+        - run: sudo pecl install imagick
+        - run: sudo docker-php-ext-enable imagick
+        - run: sudo apt-get install -y zlib1g-dev libicu-dev g++
+        - run: sudo docker-php-ext-configure intl
+        - run: sudo docker-php-ext-install intl
         - run:
             name: Composer install
             command: composer install
