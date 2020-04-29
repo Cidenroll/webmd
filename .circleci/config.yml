@@ -32,7 +32,7 @@ jobs:
       - run: sudo apt-get install imagemagick
       - run: sudo apt install libmagickwand-dev imagemagick
       - run: sudo pecl install imagick
-      - run: apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && pecl install imagick-beta && docker-php-ext-enable imagick
+      - run: sudo docker-php-ext-enable imagick
       - run: sudo apt-get install -y zlib1g-dev libicu-dev g++
       - run: sudo docker-php-ext-configure intl
       - run: sudo docker-php-ext-install intl
