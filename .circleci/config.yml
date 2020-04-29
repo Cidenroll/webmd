@@ -10,7 +10,7 @@ jobs:
       - image: circleci/php:7.2-apache-stretch-node-browsers
         environment:
             APP_ENV: dev
-            DATABASE_URL: mysql://root:root@localhost/webmd
+            DATABASE_URL: mysql://root:root@127.0.0.1/webmd
       - image: circleci/mysql:5.7
         environment:
             MYSQL_ROOT_PASSWORD: 'root'
