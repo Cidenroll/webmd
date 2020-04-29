@@ -32,7 +32,7 @@ jobs:
       - run: sudo apt-get install imagemagick
       - run: sudo apt install libmagickwand-dev imagemagick
       - run: sudo pecl install imagick
-      - run: apt-get install -y zlib1g-dev libicu-dev g++ \ && docker-php-ext-configure intl \ && docker-php-ext-install intl
+      - run: apt-get install docker-php-ext-install intl
       - run: sudo pecl install zip
       - run:
             name:   Wait for MYSQL
