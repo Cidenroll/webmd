@@ -46,7 +46,6 @@ class SubmitFormFromPatientController extends AbstractController
         $this->userRepository = $userRepository;
         $this->userFileRepository = $userFileRepository;
 
-        $this->mailer = $mailer;
     }
 
     /**
