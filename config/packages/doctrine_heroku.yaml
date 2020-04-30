@@ -1,0 +1,7 @@
+imports:
+    - { resource: 'doctrine.yaml' }
+
+doctrine:
+    dbal:
+        driver: 'pdo_sqlite'
+        server_version: '3.15'

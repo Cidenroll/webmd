@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 sudo rm -R /var/www/webmd_old && \
 sudo cp -R /var/www/webmd_current /var/www/webmd_old/ && \
 sudo rm /var/www/webmd && \

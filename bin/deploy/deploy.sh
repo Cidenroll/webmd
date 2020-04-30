@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 sudo rm /var/www/webmd && \
 sudo ln -s /var/www/webmd_current /var/www/webmd && \
 cd /var/www/webmd && \
