@@ -9,13 +9,12 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
+
     // public path used by the web server to access the output path
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
-    .enableReactPreset()
-    .enableTypeScriptLoader()
-    .enableVersioning()
+
 
     /*
      * ENTRY CONFIG
@@ -67,7 +66,7 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
