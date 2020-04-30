@@ -17,5 +17,22 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
-  }
+  },
+  "name": "webmd",
+  "description": "Well hi there! This repository holds the code and script\r for the SmartDocManager framework, for the HACKATHON contest.",
+  "version": "1.0.0",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cidenroll/webmd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cidenroll/webmd/issues"
+  },
+  "homepage": "https://github.com/Cidenroll/webmd#readme"
 }
