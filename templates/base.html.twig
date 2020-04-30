@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {% if app.environment != 'test' %}{{ encore_entry_link_tags('app') }}{% endif %}
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
 
@@ -26,6 +27,7 @@
         {% endblock %}
     </head>
     <body>
+         {% if app.environment != 'test' %}{{ encore_entry_script_tags('app') }}{% endif %}
         <nav style="background-color: #061550;" class="navbar navbar-default rounded-sm">
             <div class="container-fluid">
                 <div class="navbar-header">
