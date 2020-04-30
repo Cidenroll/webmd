@@ -5,6 +5,8 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-imagick": "*",
+        "ext-pdo_sqlite": "*",
         "aws/aws-sdk-php-symfony": "^2.2",
         "sensio/framework-extra-bundle": "^5.5",
         "sensiolabs/security-checker": "^6.0",
@@ -32,9 +34,7 @@
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "5.0.*",
         "thiagoalessio/tesseract_ocr": "^2.9",
-        "twig/cssinliner-extra": "^3.0",
-        "ext-pdo_sqlite" : "*",
-        "ext-imagick" : "*"
+        "twig/cssinliner-extra": "^3.0"
     },
     "require-dev": {
     },

@@ -13,6 +13,8 @@ use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
@@ -32,14 +34,19 @@ class SubmitFormFromPatientController extends AbstractController
      * @var UserFileRepository
      */
     private $userFileRepository;
+    /**
+     * @var MailerInterface
+     */
+    private $mailer;
 
 
-    public function __construct(Security $security, UserRepository $userRepository, UserFileRepository $userFileRepository)
+    public function __construct(Security $security, UserRepository $userRepository, UserFileRepository $userFileRepository, MailerInterface $mailer)
     {
         $this->security = $security;
         $this->userRepository = $userRepository;
         $this->userFileRepository = $userFileRepository;
 
+        $this->mailer = $mailer;
     }
 
     /**
@@ -68,16 +75,13 @@ class SubmitFormFromPatientController extends AbstractController
 
 
             if ($checkMail) {
-
+                $email = (new Email())->from('robot@msing-md.com')
+                    ->to('rusuflorinc@gmail.com')
+                    ->subject('TEST')
+                    ->setBody('This is a test');
+                $this->mailer->send($email);
             }
 
-//            if ($checkMail) {
-//                $notification = (new Notification('New Invoice'))
-//                    ->content('You got a new invoice for 15 EUR.')
-//                    ->importance(Notification::IMPORTANCE_HIGH);
-//
-//                $notifier->send($notification, new Recipient('wouter@wouterj.nl'));
-//            }
 
 
             // UPDATE USER FILE WITH THE CORRECT DOCTOR ID
