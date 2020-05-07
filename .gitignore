@@ -10,4 +10,5 @@
 /var/cache
 /var/log
 /public/uploads/pdfs
+/var/data.db
 ###< symfony/framework-bundle ###
