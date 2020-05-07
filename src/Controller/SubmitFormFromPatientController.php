@@ -11,10 +11,12 @@ namespace App\Controller;
 
 use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
+use App\Services\SMTPeter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Message;
 use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
@@ -34,13 +36,9 @@ class SubmitFormFromPatientController extends AbstractController
      * @var UserFileRepository
      */
     private $userFileRepository;
-    /**
-     * @var MailerInterface
-     */
-    private $mailer;
 
 
-    public function __construct(Security $security, UserRepository $userRepository, UserFileRepository $userFileRepository, MailerInterface $mailer)
+    public function __construct(Security $security, UserRepository $userRepository, UserFileRepository $userFileRepository)
     {
         $this->security = $security;
         $this->userRepository = $userRepository;
@@ -56,7 +54,7 @@ class SubmitFormFromPatientController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Symfony\Component\Notifier\Exception\TransportExceptionInterface
      */
-    public function  submitPatientForm(Request $request)
+    public function  submitPatientForm(Request $request, MailerInterface $mailer)
     {
         if ($request->getMethod() == 'POST'){
 
@@ -74,14 +72,26 @@ class SubmitFormFromPatientController extends AbstractController
 
 
             if ($checkMail) {
-                $email = (new Email())->from('robot@msing-md.com')
-                    ->to('rusuflorinc@gmail.com')
-                    ->subject('TEST')
-                    ->setBody('This is a test');
-                $this->mailer->send($email);
+
+                $docEntity = $this->userRepository->find($docId);
+                $doctorTelephone = $docEntity->getTelephoneNumber();
+
+                /** @var User $currentPatient */
+                $currentPatient = $this->security->getUser();
+
+                if ($doctorTelephone) {
+
+                    $basic  = new \Nexmo\Client\Credentials\Basic('68fd2098', 'mhtjTAOl5c0tpML5');
+                    $client = new \Nexmo\Client($basic);
+
+                    $message = $client->message()->send([
+                        'to' => "+4".$doctorTelephone,
+                        'from' => 'MSING-SDM',
+                        'text' => sprintf("Hello doctor %s! The pacient %s has submitted a file to you. Please log in to your MSING-SDM application to view the files and diagnosis.", $docEntity->getEmail(), $currentPatient->getEmail())
+                    ]);
+
+                }
             }
-
-
 
             // UPDATE USER FILE WITH THE CORRECT DOCTOR ID
             if ($userFile = $this->userFileRepository->find($userFileId)) {

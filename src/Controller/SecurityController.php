@@ -63,7 +63,7 @@ class SecurityController extends AbstractController
             ));
 
             $user->setUserType($userModel->userType);
-
+            $user->setTelephoneNumber($userModel->telephone);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
