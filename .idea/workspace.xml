@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cea311e8-e74f-45bd-9da2-fa8c38f10326" name="Default" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,15 +34,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".env" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="1127">
               <caret line="49" selection-start-line="49" selection-end-line="49" />
+=======
+            <state relative-caret-position="482">
+              <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
@@ -53,6 +63,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1886">
               <caret line="82" column="6" selection-start-line="82" selection-start-column="6" selection-end-line="82" selection-end-column="6" />
+=======
+      <file leaf-file-name="SubmitFormFromPatientController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/SubmitFormFromPatientController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1311">
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
             </state>
           </provider>
         </entry>
@@ -127,6 +144,7 @@
         <option value="$PROJECT_DIR$/assets/js/app.js" />
         <option value="$PROJECT_DIR$/build/css/custom.css" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/config/packages/test/swiftmailer.yaml" />
         <option value="$PROJECT_DIR$/src/Services/SMTPeter.php" />
         <option value="$PROJECT_DIR$/src/Entity/User.php" />
@@ -136,7 +154,10 @@
         <option value="$PROJECT_DIR$/src/Form/UserRegistrationFormType.php" />
         <option value="$PROJECT_DIR$/src/Controller/SubmitFormFromPatientController.php" />
         <option value="$PROJECT_DIR$/.env" />
+=======
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/.env" />
       </list>
     </option>
   </component>
@@ -644,6 +665,7 @@
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
       <path value="$PROJECT_DIR$/vendor/symfony/swiftmailer-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/mailgun-mailer" />
+<<<<<<< HEAD
       <path value="$PROJECT_DIR$/vendor/symfony/web-profiler-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/profiler-pack" />
       <path value="$PROJECT_DIR$/vendor/symfony/messenger" />
@@ -657,6 +679,8 @@
       <path value="$PROJECT_DIR$/vendor/nexmo/client-core" />
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
       <path value="$PROJECT_DIR$/vendor/psr/http-client" />
+=======
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -680,6 +704,7 @@
               <item name="webmd" type="b2602c69:ProjectViewProjectNode" />
               <item name="webmd" type="462c0819:PsiDirectoryNode" />
             </path>
+<<<<<<< HEAD
             <path>
               <item name="webmd" type="b2602c69:ProjectViewProjectNode" />
               <item name="webmd" type="462c0819:PsiDirectoryNode" />
@@ -695,6 +720,8 @@
               <item name="webmd" type="462c0819:PsiDirectoryNode" />
               <item name="var" type="462c0819:PsiDirectoryNode" />
             </path>
+=======
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
           </expand>
           <select />
         </subPane>
@@ -771,32 +798,54 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="208930000" />
+=======
+    <option name="totallyTimeSpent" value="181116000" />
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
   </component>
   <component name="ToolWindowManager">
     <frame x="3833" y="-7" width="2062" height="1126" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15527344" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5005208" side_tool="true" weight="0.010626992" />
       <window_info anchor="right" id="Database" order="3" weight="0.051757812" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.078125" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5005208" side_tool="true" weight="0.010626992" />
+      <window_info anchor="right" id="Database" order="3" weight="8.6805556E-4" />
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Anonymous Apex" order="12" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Log Viewer" order="12" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32395834" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="SOQL Query" order="12" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.0072916667" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5005208" side_tool="true" weight="0.010626992" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49947917" weight="0.32872656" />
       <window_info anchor="bottom" id="Anonymous Apex" order="12" />
     </layout>
@@ -822,6 +871,36 @@
       <window_info anchor="bottom" id="SOQL Query" order="12" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Anonymous Apex" order="13" />
+=======
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49947917" weight="0.32943678" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Log Viewer" order="12" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.078125" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49947917" weight="0.32943678" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="SOQL Query" order="12" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="8.6805556E-4" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5005208" side_tool="true" weight="0.010626992" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Anonymous Apex" order="13" />
+      <window_info anchor="bottom" id="Log Viewer" order="14" />
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -831,9 +910,16 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+<<<<<<< HEAD
   <component name="VcsManagerConfiguration">
     <MESSAGE value="mmm" />
     <option name="LAST_COMMIT_MESSAGE" value="mmm" />
+=======
+  <component name="WindowStateProjectService">
+    <state width="179" height="206" key="Git.Branch.Popup" />
+    <state width="179" height="206" key="Git.Branch.Popup/1920.1080/1920.1080" />
+    <state width="179" height="206" key="Git.Branch.Popup@1920.1080" />
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -925,8 +1011,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="42">
           <caret line="44" column="7" selection-start-line="44" selection-start-column="7" selection-end-line="44" selection-end-column="7" />
+=======
+        <state relative-caret-position="1311">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
         </state>
       </provider>
     </entry>
@@ -1046,6 +1137,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Form/UserRegistrationFormType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="505">
@@ -1054,6 +1146,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Form/Model/UserRegistrationFormModel.php">
+=======
+    <entry file="file://$PROJECT_DIR$/public/build/app.b067fb33.js" />
+    <entry file="file://$PROJECT_DIR$/public/build/0.e786eeb0.js" />
+    <entry file="file://$PROJECT_DIR$/build/css/custom.css">
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
           <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
@@ -1074,6 +1171,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1065">
@@ -1107,6 +1205,34 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
+=======
+    <entry file="file://$PROJECT_DIR$/.gcloudignore" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="51" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="44" column="7" lean-forward="true" selection-start-line="44" selection-start-column="7" selection-end-line="44" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+>>>>>>> af6926118c2a44a7d2dccfa08beffd617b09a9c3
         </state>
       </provider>
     </entry>

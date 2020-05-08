@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/a1f55bee-2cc2-438b-9915-dffb9dd7e480/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/msing-sdm",
+    "appService.deploySubpath": ""
+}

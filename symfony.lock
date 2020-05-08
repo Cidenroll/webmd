@@ -201,15 +201,6 @@
     "swiftmailer/swiftmailer": {
         "version": "v6.2.3"
     },
-    "symfony/amazon-mailer": {
-        "version": "4.4",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "4.4",
-            "ref": "9648db3ecae5c8a6b1a5f74715d3907124348815"
-        }
-    },
     "symfony/apache-pack": {
         "version": "1.0",
         "recipe": {
@@ -345,15 +336,6 @@
             "./config/packages/mailer.yaml"
         ]
     },
-    "symfony/mailgun-mailer": {
-        "version": "4.4",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "4.4",
-            "ref": "bf3904179efe657d9fbc5f0905f3daa2c63935a5"
-        }
-    },
     "symfony/maker-bundle": {
         "version": "1.0",
         "recipe": {
@@ -455,26 +437,8 @@
     "symfony/security-http": {
         "version": "v5.0.7"
     },
-    "symfony/sendgrid-mailer": {
-        "version": "4.4",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "4.4",
-            "ref": "b46e4f8f1adb2864f0aa9c0ff57aea3324a07199"
-        }
-    },
     "symfony/service-contracts": {
         "version": "v2.0.1"
-    },
-    "symfony/slack-notifier": {
-        "version": "5.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "5.0",
-            "ref": "192bc241a3095c6861353e5a7a652ad35659ca92"
-        }
     },
     "symfony/stopwatch": {
         "version": "v5.0.7"
