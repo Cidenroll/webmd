@@ -44,6 +44,11 @@ class UserFile
      */
     private $Comment;
 
+    /**
+     * @ORM\Column(type="blob")
+     */
+    private $fileContent;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -114,6 +119,18 @@ class UserFile
     public function setComment(?string $Comment): self
     {
         $this->Comment = $Comment;
+
+        return $this;
+    }
+
+    public function getFileContent()
+    {
+        return $this->fileContent;
+    }
+
+    public function setFileContent($fileContent): self
+    {
+        $this->fileContent = $fileContent;
 
         return $this;
     }
