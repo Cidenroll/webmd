@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\Model\UserRegistrationFormModel;
 use App\Form\UserRegistrationFormType;
+use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
+use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,12 +20,11 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="app_login")
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -35,23 +37,42 @@ class SecurityController extends AbstractController
     /**
      * @Route("/logout", name="app_logout")
      */
-    public function logout()
+    public function logout(): void
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        throw new LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
     /**
      * @Route("/register", name="app_register")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param GuardAuthenticatorHandler $guardHandler
+     * @param LoginFormAuthenticator $formAuthenticator
+     * @return Response|null
      */
     public function register(Request $request,
                              UserPasswordEncoderInterface $passwordEncoder,
                              GuardAuthenticatorHandler $guardHandler,
-                             LoginFormAuthenticator $formAuthenticator)
+                             LoginFormAuthenticator $formAuthenticator): ?Response
     {
         $form = $this->createForm(UserRegistrationFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var UserRepository $userRepository */
+            $userRepository = $this->getDoctrine()->getRepository(User::class);
+            $userCount = $userRepository->getUserCount();
+            if ($userCount && $userCount > $this->getParameter('user_registration_limit')) {
+
+                return $this->render('security/register.html.twig', [
+                    'maxNumberOfUsers' => 'Limit of registered users passed. Unable to register more users.',
+                    'registrationForm' => $form->createView()
+                ]);
+
+            }
+
+
             /** @var UserRegistrationFormModel $userModel */
             $userModel = $form->getData();
 
@@ -86,7 +107,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/terms", name="viewT&C")
      */
-    public function viewTerms()
+    public function viewTerms(): Response
     {
         return $this->render(
             'terms.html.twig', []

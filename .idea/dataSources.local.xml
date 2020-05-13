@@ -2,11 +2,12 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="data" uuid="b801e323-ab78-4bb2-ab66-0d0689e0f6a4">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
-      <introspection-schemas>*:</introspection-schemas>
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
+      <schema-mapping />
     </data-source>
     <data-source name="data [2]" uuid="fa0a3787-a859-487c-a782-bf7fc5faa144">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
+      <schema-mapping />
     </data-source>
   </component>
 </project>

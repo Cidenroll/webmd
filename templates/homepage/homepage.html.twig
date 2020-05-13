@@ -6,7 +6,7 @@
 
 {% block body %}
     {% if app.user %}
-        <center>
+        <center>>
             {% if app.user.userType == 'doctor' %}
                 <div class="mb-3">
                     You are logged in as <a class="font-weight-bold" href="{{ path('medAccount') }}">{{ app.user.username }}</a> ({{ app.user.userType }})
@@ -37,6 +37,7 @@
                                 <th>Comments</th>
                                 <th>Options</th>
                             </tr>
+
                             {% for key, userFile in userFiles %}
 
                                 <tr>

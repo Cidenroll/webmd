@@ -35,6 +35,8 @@ class UploadMedicalFile extends AbstractController
 
     /**
      * @Route("/upload_md", name="uploadfile")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function upload(Request $request)
     {
@@ -50,7 +52,7 @@ class UploadMedicalFile extends AbstractController
 
             if ($pdfFile) {
                 $originalFileName = pathinfo($pdfFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $newFileName = $currentUser->getId().'_'.$originalFileName."_".uniqid().".".$pdfFile->guessExtension();
+                $newFileName = $currentUser->getId().'_'.$originalFileName.".".$pdfFile->guessExtension();
 
                 // Move the file to the directory where pdfs are stored
                 try {
@@ -66,6 +68,9 @@ class UploadMedicalFile extends AbstractController
                 $userFileEnt = new UserFile();
                 $userFileEnt->setFileName($newFileName);
                 $userFileEnt->setDocType($form->get('docType')->getData());
+
+                /** @var UploadedFile $uploadedFile */
+                $userFileEnt->setFileContent(base64_encode($form->get('fileName')->getData()));
                 $userFileEnt->setUserId($currentUser);
 
                 $em->persist($userFileEnt);

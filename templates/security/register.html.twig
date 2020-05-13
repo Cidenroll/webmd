@@ -6,32 +6,38 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                {{ form_start(registrationForm, {
-                    'attr': {'class': 'form-signin'}
-                }) }}
-                <h1 class="h3 mb-3 font-weight-normal">Register</h1>
-                {{ form_row(registrationForm.firstName, {
-                    attr: { placeholder: 'First Name' }
-                }) }}
-                {{ form_row(registrationForm.email, {
-                    attr: { placeholder: 'Email' }
-                }) }}
-                {{ form_row(registrationForm.plainPassword, {
-                    attr: { placeholder: 'Password' }
-                }) }}
-                {{ form_row(registrationForm.telephone, {
-                    attr: { placeholder: 'Telephone' }
-                }) }}
-                {{ form_row(registrationForm.userType)  }}
+                {%  if maxNumberOfUsers is defined %}
+                    <h3 class="h3 mb-3 font-weight-normal" style="color: crimson">{{ maxNumberOfUsers }}</h3>
+                {% else %}
+                    {{ form_start(registrationForm, {
+                        'attr': {'class': 'form-signin'}
+                    }) }}
+                    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+                    {{ form_row(registrationForm.firstName, {
+                        attr: { placeholder: 'First Name' }
+                    }) }}
+                    {{ form_row(registrationForm.email, {
+                        attr: { placeholder: 'Email' }
+                    }) }}
+                    {{ form_row(registrationForm.plainPassword, {
+                        attr: { placeholder: 'Password' }
+                    }) }}
+                    {{ form_row(registrationForm.telephone, {
+                        attr: { placeholder: 'Telephone' }
+                    }) }}
+                    {{ form_row(registrationForm.userType)  }}
 
-                <span>
+                    <span>
                     {{ form_row(registrationForm.agreeTerms) }} <a href="{{ path('viewT&C') }}" target="_blank">Check terms</a>
                 </span>
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">
-                    Register
-                </button>
-                {{ form_end(registrationForm) }}
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">
+                        Register
+                    </button>
+                    {{ form_end(registrationForm) }}
+                {% endif %}
+
+
 
             </div>
         </div>

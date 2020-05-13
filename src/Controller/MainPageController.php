@@ -13,6 +13,7 @@ use App\Entity\UserFile;
 use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
@@ -34,6 +35,8 @@ class MainPageController extends AbstractController
     /**
      * MainPageController constructor.
      * @param UserFileRepository $userFileRepository
+     * @param Security $security
+     * @param UserRepository $userRepository
      */
     public function __construct(UserFileRepository $userFileRepository, Security $security, UserRepository $userRepository)
     {
@@ -45,13 +48,12 @@ class MainPageController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function homepage()
+    public function homepage(): ?Response
     {
         $currentUser = $this->security->getUser();
         if ($currentUser) {
 
             $userFiles = $this->userFileRepository->findByUserId($currentUser->getId());
-
 
             $ufList = [];
             /** @var UserFile $userFile */
@@ -71,6 +73,7 @@ class MainPageController extends AbstractController
                     'doctorMail'    =>  $doctorMail,
                     'docType'  =>  $userFile->getDocType(),
                     'comment'   =>  $userFile->getComment(),
+                    'fileContent'   =>  $userFile->getFileContent()
                 ];
             }
 
@@ -79,10 +82,9 @@ class MainPageController extends AbstractController
                 'userFiles' =>  $ufList
             ]);
         }
-        else {
-            return $this->render('homepage/homepage.html.twig', [
-            ]);
-        }
+
+        return $this->render('homepage/homepage.html.twig', [
+        ]);
 
     }
 }
