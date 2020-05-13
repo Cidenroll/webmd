@@ -51,9 +51,19 @@ class MainPageController extends AbstractController
     public function homepage(): ?Response
     {
         $currentUser = $this->security->getUser();
+        $em = $this->getDoctrine()->getManager();
         if ($currentUser) {
 
             $userFiles = $this->userFileRepository->findByUserId($currentUser->getId());
+
+            // check all paths of files
+            /** @var UserFile $userFile */
+            foreach ($userFiles as $userFile) {
+                if (!file_exists($this->getParameter('pdf_directory').'/'.$userFile->getFileName())) {
+                    $em->remove($userFile);
+                }
+            }
+            $em->flush();
 
             $ufList = [];
             /** @var UserFile $userFile */
