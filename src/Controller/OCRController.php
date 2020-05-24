@@ -109,12 +109,8 @@ class OCRController extends AbstractController
             $ocrRawOutput = $this->ocrImageParse(null, $stream);
         }
         catch (\Exception $exception) {
-            $ocrRawOutput = ['text' => "", 'details' => []];
+            $ocrRawOutput = ['text' => [], 'details' => []];
         }
-
-//        if (is_resource($stream)) {
-//            fclose($stream);
-//        }
 
         // IF the document is of type 'Annual checkup'
         /** @var UserFile $fileObj */
@@ -200,70 +196,55 @@ class OCRController extends AbstractController
             $pdf = $parser->parseContent($fileContent);
         }
 
-        if (strlen($pdf->getText()) < 150) {
-            // Create a TMP file of the image with PNG format
-            $fileName = uniqid(true, true).'.png';
-            // Get the path of the temporal image
-            $outputImagePath = $this->getParameter('image_directory', $fileName);
+        $mergeEngines = [];
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,"http://api.ocr.space/parse/image");
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, [
-                    'apikey'    =>  $this->apiKey,
-                    'base64image'=>  'data:application/pdf;base64,'.base64_encode(file_get_contents($filePath)),
-                    'filetype'  =>  'PDF',
-                    'scale' =>  'false',
-                    'OCREngine' =>  '2',
-                ]);
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-            $serverOutput = curl_exec($ch);
-            curl_close($ch);
+        $mergeEngines['SMALOT'] = $pdf->getText();
 
-            $textEngine2 = json_decode($serverOutput, true);
-            $parsedTextEngine2 = $textEngine2['ParsedResults'][0]['ParsedText'];
-
-
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,"http://api.ocr.space/parse/image");
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, [
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,"http://api.ocr.space/parse/image");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, [
                 'apikey'    =>  $this->apiKey,
-                'base64image'=>  'data:application/pdf;base64,'.base64_encode(file_get_contents($filePath)),
+                'base64image'=>  'data:application/pdf;base64,'.base64_encode($fileContent),
                 'filetype'  =>  'PDF',
                 'scale' =>  'false',
-                'OCREngine' =>  '1',
+                'OCREngine' =>  '2',
             ]);
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-            $serverOutput = curl_exec($ch);
-            curl_close($ch);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+        $serverOutput = curl_exec($ch);
+        curl_close($ch);
 
-            $textEngine1 = json_decode($serverOutput, true);
-            $parsedTextEngine1 = $textEngine1['ParsedResults'][0]['ParsedText'];
+        $textEngine2 = json_decode($serverOutput, true);
+        $parsedTextEngine2 = $textEngine2['ParsedResults'][0]['ParsedText'];
 
-            $mergeEngines = implode('\n^^^^^%%^^^^^^\n', [$parsedTextEngine2,$parsedTextEngine1]);
+        $mergeEngines['OCRSPACEV2'] = $parsedTextEngine2;
 
-            $details = $pdf->getDetails();
-            $text = $mergeEngines;
-        }
-        else {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,"http://api.ocr.space/parse/image");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, [
+            'apikey'    =>  $this->apiKey,
+            'base64image'=>  'data:application/pdf;base64,'.base64_encode($fileContent),
+            'filetype'  =>  'PDF',
+            'scale' =>  'false',
+            'OCREngine' =>  '1',
+        ]);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+        $serverOutput = curl_exec($ch);
+        curl_close($ch);
 
-            $this->usedPDFParser = true;
-            $details = $pdf->getDetails();
-            $text = $pdf->getText();
+        $textEngine1 = json_decode($serverOutput, true);
+        $parsedTextEngine1 = $textEngine1['ParsedResults'][0]['ParsedText'];
 
-        }
+        $mergeEngines['OCRSPACEV1'] = $parsedTextEngine2;
+        //$mergeEngines = implode('\n^^^^^%%^^^^^^\n', [$parsedTextEngine2,$parsedTextEngine1]);
+
+        $this->usedPDFParser = true;
+        $details = $pdf->getDetails();
 
         return [
             'details'   =>  $details,
-            'text'  =>  $text
+            'text'  =>  $mergeEngines
         ];
-
     }
-
-
-
-
-
-
 }

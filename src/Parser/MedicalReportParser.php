@@ -9,7 +9,7 @@
 namespace App\Parser;
 
 
-class MedicalReportParser
+class MedicalReportParser extends AbstractParser
 {
     private $analysisTextEngine1 = '';
     private $analysisTextEngine2 = '';
@@ -26,14 +26,13 @@ class MedicalReportParser
     private $tags = [ 'activ', 'inactiv', 'cerebral', 'leziuni', 'leziune', 'nerv' , 'rmn' ];
 
 
-    public function __construct($analysisText, array $detailsArr=[])
+    public function __construct(array $analysisText=[], array $detailsArr=[])
     {
-        $explodedText = explode('\n^^^^^%%^^^^^^\n', $analysisText);
-        if (isset($explodedText[0])) {
-            $this->analysisTextEngine2 = $explodedText[0];
+        if (isset($analysisText['OCRSPACEV2'])) {
+            $this->analysisTextEngine2 = $analysisText['OCRSPACEV2'];
         }
-        if (isset($explodedText[1])) {
-            $this->analysisTextEngine1 = $explodedText[1];
+        if (isset($explodedText['OCRSPACEV1'])) {
+            $this->analysisTextEngine1 = $analysisText['OCRSPACEV1'];
         }
         $this->details = $detailsArr;
     }
