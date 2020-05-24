@@ -53,10 +53,15 @@ class UploadMedicalFile extends AbstractController
 
             if ($pdfFile) {
                 if ($result = $uploaderHelper->upload($pdfFile, $currentUser->getId())) {
-                    $pdfFile->move(
+//                    $pdfFile->move(
+//                        $this->getParameter('pdf_directory'),
+//                        $result['newFileName']
+//                    );
+
+                    dd($pdfFile->move(
                         $this->getParameter('pdf_directory'),
                         $result['newFileName']
-                    );
+                    ));
 
                     $em = $this->getDoctrine()->getManager();
                     $userFileEnt = new UserFile();
