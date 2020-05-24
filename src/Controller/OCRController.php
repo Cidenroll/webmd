@@ -101,23 +101,20 @@ class OCRController extends AbstractController
         $userFile = $this->userFileRepository->find($id);
         $userFilePath = sprintf("%s/%s",$this->getParameter('pdf_directory'), $userFile->getFileName());
 
-        copy($uploaderHelper->getPublicPath($userFile->getImagePath()),$userFilePath);
+//        $stream = fopen($uploaderHelper->getPublicPath($userFile->getImagePath()), 'r');
         $stream = file_get_contents($uploaderHelper->getPublicPath($userFile->getImagePath()));
-
 
         $ocrRawOutput = [];
         try {
-            if ($userFilePath) {
-                $ocrRawOutput = $this->ocrImageParse($userFilePath, null);
-            }
-            else {
-                $ocrRawOutput = $this->ocrImageParse(null, $stream);
-            }
-
+            $ocrRawOutput = $this->ocrImageParse(null, $stream);
         }
         catch (\Exception $exception) {
             $ocrRawOutput = ['text' => "", 'details' => []];
         }
+
+//        if (is_resource($stream)) {
+//            fclose($stream);
+//        }
 
         // IF the document is of type 'Annual checkup'
         /** @var UserFile $fileObj */
