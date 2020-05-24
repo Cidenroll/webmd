@@ -49,10 +49,12 @@ class UploaderHelper
     public function upload(UploadedFile $file, int $currentUserId)
     {
         $originalFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $fileA = $currentUserId."_".$originalFileName."_".uniqid(true, true).".".$file->guessExtension();
         $newFileName = sprintf("%s/%s",
             self::PDF_LOCATION,
-            $currentUserId."_".$originalFileName."_".uniqid(true, true).".".$file->guessExtension()
+            $fileA
         );
+
 
         $stream = fopen($file->getPathname(), 'rb');
         try {
@@ -71,7 +73,7 @@ class UploaderHelper
             fclose($stream);
         }
 
-        return ['newFileName' => $newFileName];
+        return ['newFileName' => $newFileName, "urlEncName" => urlencode($originalFileName)];
 
     }
 

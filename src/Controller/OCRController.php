@@ -101,17 +101,19 @@ class OCRController extends AbstractController
         $userFile = $this->userFileRepository->find($id);
         $userFilePath = sprintf("%s/%s",$this->getParameter('pdf_directory'), $userFile->getFileName());
 
-        @chmod($userFilePath, 0777);
-        if (copy($uploaderHelper->getPublicPath($userFile->getImagePath()),$userFilePath)) {
-            dd("true");
-        }
-        else {
-            dd("false");
-        }
+        copy($uploaderHelper->getPublicPath($userFile->getImagePath()),$userFilePath);
+        $stream = file_get_contents($uploaderHelper->getPublicPath($userFile->getImagePath()));
+
 
         $ocrRawOutput = [];
         try {
-            $ocrRawOutput = $this->ocrImageParse($userFilePath);
+            if ($userFilePath) {
+                $ocrRawOutput = $this->ocrImageParse($userFilePath, null);
+            }
+            else {
+                $ocrRawOutput = $this->ocrImageParse(null, $stream);
+            }
+
         }
         catch (\Exception $exception) {
             $ocrRawOutput = ['text' => "", 'details' => []];
@@ -187,13 +189,19 @@ class OCRController extends AbstractController
 
     /**
      * @param String $filePath
+     * @param null $fileContent
      * @return array
      * @throws \Exception
      */
-    private function ocrImageParse(String $filePath): array
+    private function ocrImageParse(String $filePath= null, $fileContent = null): array
     {
         $parser = new Parser();
-        $pdf = $parser->parseFile($filePath);
+        if ($filePath) {
+            $pdf = $parser->parseFile($filePath);
+        }
+        else {
+            $pdf = $parser->parseContent($fileContent);
+        }
 
         if (strlen($pdf->getText()) < 150) {
             // Create a TMP file of the image with PNG format

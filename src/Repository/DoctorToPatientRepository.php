@@ -55,9 +55,7 @@ class DoctorToPatientRepository extends ServiceEntityRepository
         $allPatients = $this->userRepository->findAllPatients();
 
         /** @var DoctorToPatient $patient */
-        foreach ($patientsList as $patient) {
-            dump($patient->getId());
-        }
+        foreach ($patientsList as $patient) {}
 
         //dd($patientsList, $allPatients);
 
