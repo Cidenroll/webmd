@@ -15,8 +15,6 @@ use Symfony\Component\Validator\Constraints\Image;
 
 class UserProfileFormType extends AbstractType
 {
-
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
