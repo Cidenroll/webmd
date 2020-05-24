@@ -101,6 +101,7 @@ class OCRController extends AbstractController
         $userFile = $this->userFileRepository->find($id);
         $userFilePath = sprintf("%s/%s",$this->getParameter('pdf_directory'), $userFile->getFileName());
 
+        @chmod($userFilePath, 0777);
         if (copy($uploaderHelper->getPublicPath($userFile->getImagePath()),$userFilePath)) {
             dd("true");
         }
