@@ -9,7 +9,10 @@
         "api-platform/api-pack": "^1.2",
         "aws/aws-sdk-php": "^3.138",
         "aws/aws-sdk-php-symfony": "^2.2",
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "liip/imagine-bundle": "^2.3",
         "nexmo/client": "^2.0",
+        "oneup/flysystem-bundle": "^3.4",
         "sensio/framework-extra-bundle": "^5.5",
         "sensiolabs/security-checker": "^6.0",
         "shivas/versioning-bundle": "^3.2",
@@ -36,7 +39,8 @@
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "5.0.*",
         "thiagoalessio/tesseract_ocr": "^2.9",
-        "twig/cssinliner-extra": "^3.0"
+        "twig/cssinliner-extra": "^3.0",
+      "ext-curl": "*"
     },
     "require-dev": {
     },

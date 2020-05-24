@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Services\UploaderHelper;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -133,6 +134,11 @@ class UserFile
         $this->fileContent = $fileContent;
 
         return $this;
+    }
+
+    public function getImagePath(): string
+    {
+        return urlencode($this->getFileName());
     }
 
 }

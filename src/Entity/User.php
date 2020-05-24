@@ -59,6 +59,11 @@ class User implements UserInterface
      */
     private $telephoneNumber;
 
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $profilePicturePath;
+
     public function __construct()
     {
         $this->userFiles = new ArrayCollection();
@@ -236,6 +241,18 @@ class User implements UserInterface
     public function setTelephoneNumber(?string $telephoneNumber): self
     {
         $this->telephoneNumber = $telephoneNumber;
+
+        return $this;
+    }
+
+    public function getProfilePicturePath(): ?string
+    {
+        return $this->profilePicturePath;
+    }
+
+    public function setProfilePicturePath(?string $profilePicturePath): self
+    {
+        $this->profilePicturePath = $profilePicturePath;
 
         return $this;
     }

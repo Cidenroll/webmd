@@ -1,0 +1,5 @@
+
+F	php:S1172p",Remove the unused function parameter "$key".(§ÍêÁÿÿÿÿÿ
+n	php:S3776#"TRefactor this function to reduce its Cognitive Complexity from 28 to the 15 allowed.(²ƒæ²üÿÿÿÿ
+\	php:S1192Z"GDefine a constant instead of duplicating this literal "actual" 6 times.(žù»¤
+1	php:S2010q"Replace "or" with "||".(ý²Ý´ÿÿÿÿÿ

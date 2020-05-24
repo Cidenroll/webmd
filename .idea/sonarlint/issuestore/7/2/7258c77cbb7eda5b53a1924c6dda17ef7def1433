@@ -1,0 +1,5 @@
+
+P	php:S1481¨"5Remove this unused "$outputImagePath" local variable.(€øâšýÿÿÿÿ
+i	php:S1192S"HDefine a constant instead of duplicating this literal "details" 6 times.(ñî†¯ýÿÿÿÿ8‡ÝÑ”¤.
+w	php:S3923]"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¹ðÄ÷8‡ÝÑ”¤.
+w	php:S3923n"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¹ðÄ÷8‡ÝÑ”¤.

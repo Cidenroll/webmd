@@ -1,0 +1,10 @@
+
+G	php:S1481:"+Remove this unused "$email" local variable.(¶ξ…¤8ªΠ”¤.
+E	php:S1481;")Remove this unused "$sex" local variable.(Ύα¶ζ8ªΠ”¤.
+J	php:S1481<")Remove this unused "$cnp" local variable.(ΒΖ›ÿÿÿÿÿ8ªΠ”¤.
+E	php:S1481=")Remove this unused "$age" local variable.(ε‹£χ8ªΠ”¤.
+K	php:S1481>"/Remove this unused "$institute" local variable.(λ―δΎ8ªΠ”¤.
+F	php:S1481?"+Remove this unused "$dates" local variable.(―µ΅-8ªΠ”¤.
+Q	php:S1481@"0Remove this unused "$diagnostic" local variable.(£ΐ¬ϋÿÿÿÿÿ8ªΠ”¤.
+O	php:S1481A"3Remove this unused "$resultSummary" local variable.(ωτ8ªΠ”¤.
+H	php:S1481T"-Remove this unused "$message" local variable.(®Ξ{8ªΠ”¤.

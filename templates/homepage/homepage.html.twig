@@ -39,6 +39,7 @@
                             </tr>
 
                             {% for key, userFile in userFiles %}
+
                                 {% if key is defined or userFiles is defined %}
                                 <tr>
                                     <td>{{ userFile.fileName|split('_')[1] }}</td>
@@ -50,8 +51,10 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        <a title="View document" style="font-weight: bold" href="{{ asset('uploads/pdfs/confirmed/'~userFile.fileName) }}" target="_blank"><i class="fa fa-eye"></i></a>
-                                        <a title="Submit document" style="font-weight: bold" href="{{ path('medform', {'id': key} ) }}"><i class="fas fa-cloud-upload-alt"></i></a>
+                                        <a title="View document" style="font-weight: bold" href="{{ uploaded_asset(userFile.imagePath) }}" target="_blank"><i class="fa fa-eye"></i></a>
+                                        {% if key %}
+                                            <a title="Submit document" style="font-weight: bold" href="{{ path('medform', {'id': key} ) }}"><i class="fas fa-cloud-upload-alt"></i></a>
+                                        {% endif %}
                                         {% if userFile.comment %}
                                             <a title="View medical comment" style="font-weight: bold" href="{{ path('viewComment', {'id': key} ) }}"><i class="fas fa-comment-medical"></i></a>
                                         {% endif %}

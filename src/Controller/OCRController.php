@@ -15,9 +15,17 @@ use App\Parser\AnalysisParser;
 use App\Parser\MedicalReportParser;
 use App\Repository\RelationsPd2Repository;
 use App\Repository\UserFileRepository;
+use App\Services\UploaderHelper;
+use Aws\S3\S3Client;
+use League\Flysystem\FilesystemInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Smalot\PdfParser\Parser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\HeaderUtils;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Security\Core\Security;
 
@@ -45,19 +53,37 @@ class OCRController extends AbstractController
      */
     private $pd2Repository;
 
+    /**
+     * @var S3ClientAlias|S3Client
+     */
+    private $s3Client;
 
-    public function __construct(Security $security, UserFileRepository $userFileRepository, RelationsPd2Repository $pd2Repository)
+
+    /**
+     * OCRController constructor.
+     * @param S3ClientAlias $s3Client
+     * @param FilesystemInterface $publicUploadFileSystem
+     * @param Security $security
+     * @param UserFileRepository $userFileRepository
+     * @param RelationsPd2Repository $pd2Repository
+     */
+    public function __construct(S3Client $s3Client, Security $security, UserFileRepository $userFileRepository, RelationsPd2Repository $pd2Repository)
     {
         $this->security = $security;
         $this->userFileRepository = $userFileRepository;
         $this->usedPDFParser = false;
         $this->pd2Repository = $pd2Repository;
+        $this->s3Client = $s3Client;
     }
 
     /**
      * @Route("/medform/{id}", name="medform")
+     * @param $id
+     * @param UploaderHelper $uploaderHelper
+     * @return RedirectResponse|Response
+     * @throws \League\Flysystem\FileNotFoundException
      */
-    public function getFileAndOcr($id)
+    public function getFileAndOcr($id, UploaderHelper $uploaderHelper)
     {
         // check id
         /** @var User $currentUser */
@@ -66,7 +92,7 @@ class OCRController extends AbstractController
         $userFileObj = $this->userFileRepository->find($id);
 
         // if the user is trying to alter the above id above, atleast make him look just into his own; else, return 404
-        if ($currentUser->getId() != $userFileObj->getUserId()->getId()) {
+        if ($currentUser->getId() != $userFileObj->getUserId()->getId() && $userFileObj->getUserId()) {
             return $this->redirect($this->generateUrl('notFound'));
         }
 
@@ -75,14 +101,21 @@ class OCRController extends AbstractController
         $userFile = $this->userFileRepository->find($id);
         $userFilePath = sprintf("%s/%s",$this->getParameter('pdf_directory'), $userFile->getFileName());
 
-        $ocrRawOutput = $this->ocrImageParse($userFilePath);
+        copy($uploaderHelper->getPublicPath($userFile->getImagePath()),$userFilePath);
 
+        $ocrRawOutput = [];
+        try {
+            $ocrRawOutput = $this->ocrImageParse($userFilePath);
+        }
+        catch (\Exception $exception) {
+            $ocrRawOutput = ['text' => "", 'details' => []];
+        }
 
         // IF the document is of type 'Annual checkup'
         /** @var UserFile $fileObj */
         $fileObj = $this->userFileRepository->findDocTypeByFileId($id)[0];
 
-        if ($fileObj->getDocType() == 'Annual checkup') {
+        if ($fileObj->getDocType() === 'Annual checkup') {
 
             if ($this->usedPDFParser) {
                 $analysisParserObj = new AnalysisParser($ocrRawOutput['text'], $ocrRawOutput['details']);
@@ -122,6 +155,8 @@ class OCRController extends AbstractController
 
     /**
      * @Route("/medform/{id}/viewComment", name="viewComment")
+     * @param $id
+     * @return RedirectResponse|Response
      */
     public function viewMedicalComment($id)
     {
@@ -144,17 +179,19 @@ class OCRController extends AbstractController
     }
 
 
-
-
-    private function ocrImageParse(String $filePath)
+    /**
+     * @param String $filePath
+     * @return array
+     * @throws \Exception
+     */
+    private function ocrImageParse(String $filePath): array
     {
         $parser = new Parser();
         $pdf = $parser->parseFile($filePath);
 
-
         if (strlen($pdf->getText()) < 150) {
             // Create a TMP file of the image with PNG format
-            $fileName = uniqid().'.png';
+            $fileName = uniqid(true, true).'.png';
             // Get the path of the temporal image
             $outputImagePath = $this->getParameter('image_directory', $fileName);
 

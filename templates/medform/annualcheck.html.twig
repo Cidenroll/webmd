@@ -18,27 +18,27 @@
                     </tr>
                     <tr>
                         <td> <label for="sex">Sex</label></td>
-                        <td><input class="form-control input-group-sm" type="text" name="sex" value="{{ patientInfo.sex }}" readonly></td>
+                        <td><input class="form-control input-group-sm" type="text" name="sex" value="{{ patientInfo.sex }}"></td>
                     </tr>
                     <tr>
                         <td><label for="cnp">CNP</label></td>
-                        <td><input class="form-control input-group-sm" type="text" name="cnp" value="{{ patientInfo.cnp }}" readonly></td>
+                        <td><input class="form-control input-group-sm" type="text" name="cnp" value="{{ patientInfo.cnp }}"></td>
                     </tr>
                     <tr>
                         <td><label for="age">Age</label></td>
-                        <td><input class="form-control input-group-sm" type="text" name="age" value="{{ patientInfo.age }}" readonly></td>
+                        <td><input class="form-control input-group-sm" type="text" name="age" value="{{ patientInfo.age }}"></td>
                     </tr>
                     <tr>
                         <td><label for="institution">Institution</label></td>
-                        <td><input class="form-control input-group-sm" type="text" name="institution" value="{{ patientInfo.institute }}" readonly></td>
+                        <td><input class="form-control input-group-sm" type="text" name="institution" value="{{ patientInfo.institute }}"></td>
                     </tr>
                     <tr>
                         <td><label for="dates">Dates</label></td>
-                        <td><input class="form-control input-group-sm" type="text" name="dates" value="{{ patientInfo.dates }}" readonly></td>
+                        <td><input class="form-control input-group-sm" type="text" name="dates" value="{{ patientInfo.dates }}"></td>
                     </tr>
                     <tr>
                         <td><label for="resultSummary">Result Summary</label></td>
-                        <td><textarea class="form-control rounded-0" rows="10" name="resultSummary" readonly>{{ patientInfo.diagnostic }}</textarea></td>
+                        <td><textarea class="form-control rounded-0" rows="10" name="resultSummary">{{ patientInfo.diagnostic }}</textarea></td>
                     </tr>
                     {% if patientInfo.highestVals is not empty %}
                     <tr bgcolor="#ff4662">

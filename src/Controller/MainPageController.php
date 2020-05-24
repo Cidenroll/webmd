@@ -56,14 +56,17 @@ class MainPageController extends AbstractController
 
             $userFiles = $this->userFileRepository->findByUserId($currentUser->getId());
 
-            // check all paths of files
+            //*****************************************************************************************************
+            // DELETE NONEXISTING USERFILES IF THEIR REFS DON'T EXIST IN THE LOCAL PUBLIC FOLDER
+
             /** @var UserFile $userFile */
-            foreach ($userFiles as $userFile) {
-                if (!file_exists($this->getParameter('pdf_directory').'/'.$userFile->getFileName())) {
-                    $em->remove($userFile);
-                }
-            }
-            $em->flush();
+//            foreach ($userFiles as $userFile) {
+//                if (!file_exists($this->getParameter('pdf_directory').'/'.$userFile->getFileName())) {
+//                    $em->remove($userFile);
+//                }
+//            }
+//            $em->flush();
+            //*****************************************************************************************************
 
             $ufList = [];
             /** @var UserFile $userFile */
@@ -77,16 +80,15 @@ class MainPageController extends AbstractController
                     }
                 }
 
-
                 $ufList[$userFile->getId()] = [
                     'fileName'  =>  $userFile->getFileName(),
+                    'imagePath' =>  $userFile->getImagePath(),
                     'doctorMail'    =>  $doctorMail,
                     'docType'  =>  $userFile->getDocType(),
                     'comment'   =>  $userFile->getComment(),
                     'fileContent'   =>  $userFile->getFileContent()
                 ];
             }
-
 
             return $this->render('homepage/homepage.html.twig', [
                 'userFiles' =>  $ufList

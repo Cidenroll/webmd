@@ -122,11 +122,33 @@
     "guzzlehttp/psr7": {
         "version": "1.6.1"
     },
+    "imagine/imagine": {
+        "version": "1.2.3"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
     "lcobucci/jwt": {
         "version": "3.3.1"
+    },
+    "league/flysystem": {
+        "version": "1.0.69"
+    },
+    "league/flysystem-aws-s3-v3": {
+        "version": "1.0.24"
+    },
+    "liip/imagine-bundle": {
+        "version": "1.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.8",
+            "ref": "1d42bc3f713130582e6e0c475c49bc327ab0a2a2"
+        },
+        "files": [
+            "./config/packages/liip_imagine.yaml",
+            "./config/routes/liip_imagine.yaml"
+        ]
     },
     "mtdowling/jmespath.php": {
         "version": "2.5.0"
@@ -161,8 +183,20 @@
     "ocramius/proxy-manager": {
         "version": "2.2.3"
     },
+    "oneup/flysystem-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "0eb87bba411c227da027fe5f7c1dc7954b02f242"
+        },
+        "files": [
+            "./config/packages/oneup_flysystem.yaml"
+        ]
+    },
     "php": {
-        "version": "7.2"
+        "version": "7.3"
     },
     "php-http/guzzle6-adapter": {
         "version": "v2.0.1"
@@ -508,6 +542,22 @@
             "./config/packages/dev/swiftmailer.yaml",
             "./config/packages/swiftmailer.yaml",
             "./config/packages/test/swiftmailer.yaml"
+        ]
+    },
+    "symfony/templating": {
+        "version": "v5.0.8"
+    },
+    "symfony/translation": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "2ad9d2545bce8ca1a863e50e92141f0b9d87ffcd"
+        },
+        "files": [
+            "./config/packages/translation.yaml",
+            "./translations/.gitignore"
         ]
     },
     "symfony/translation-contracts": {

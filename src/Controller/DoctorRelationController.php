@@ -92,6 +92,7 @@ class DoctorRelationController extends AbstractController
             $filesAssignedToDoctor = $this->userFileRepository->findNumberOfFilesAssignedToDoctor($patient->getId(), $currentUser->getId());
             $fileDetailsList[$patient->getEmail()]['count'] = $filesAssignedToDoctor;
             $fileDetailsList[$patient->getEmail()]['id'] = $patient->getId();
+            $fileDetailsList[$patient->getEmail()]['profile'] = $patient->getProfilePicturePath();
         }
 
         return $this->render('medAccount/medacc.html.twig', [

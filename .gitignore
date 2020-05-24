@@ -11,3 +11,7 @@
 /public/uploads/pdfs
 /var/data.db
 ###< symfony/framework-bundle ###
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
