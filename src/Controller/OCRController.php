@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use AlibabaCloud\SDK\Ocr\V20191230\Ocr;
 use App\Entity\User;
 use App\Entity\UserFile;
 use App\Parser\AnalysisParser;
@@ -17,6 +18,7 @@ use App\Repository\RelationsPd2Repository;
 use App\Repository\UserFileRepository;
 use App\Services\UploaderHelper;
 use Aws\S3\S3Client;
+use GSSimpleOcr\Service\SimpleOcrService;
 use League\Flysystem\FilesystemInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Smalot\PdfParser\Parser;
@@ -103,6 +105,7 @@ class OCRController extends AbstractController
 
 //        $stream = fopen($uploaderHelper->getPublicPath($userFile->getImagePath()), 'r');
         $stream = file_get_contents($uploaderHelper->getPublicPath($userFile->getImagePath()));
+
 
         $ocrRawOutput = [];
         try {
@@ -197,7 +200,6 @@ class OCRController extends AbstractController
         }
 
         $mergeEngines = [];
-
         $mergeEngines['SMALOT'] = $pdf->getText();
 
         $ch = curl_init();

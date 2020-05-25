@@ -4,8 +4,602 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b602a275e94078c3d899454bee74a618",
+    "content-hash": "a49a431873632f615487bf0d59ad6292",
     "packages": [
+        {
+            "name": "adbario/php-dot-notation",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/adbario/php-dot-notation.git",
+                "reference": "eee4fc81296531e6aafba4c2bbccfc5adab1676e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/adbario/php-dot-notation/zipball/eee4fc81296531e6aafba4c2bbccfc5adab1676e",
+                "reference": "eee4fc81296531e6aafba4c2bbccfc5adab1676e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0|^5.0|^6.0",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Adbar\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Riku Särkinen",
+                    "email": "riku@adbar.io"
+                }
+            ],
+            "description": "PHP dot notation access to arrays",
+            "homepage": "https://github.com/adbario/php-dot-notation",
+            "keywords": [
+                "ArrayAccess",
+                "dotnotation"
+            ],
+            "time": "2019-01-01T23:59:15+00:00"
+        },
+        {
+            "name": "alibabacloud/credentials",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aliyun/credentials-php.git",
+                "reference": "351fa76c72fb806758ca5a03c610c36ad807c311"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aliyun/credentials-php/zipball/351fa76c72fb806758ca5a03c610c36ad807c311",
+                "reference": "351fa76c72fb806758ca5a03c610c36ad807c311",
+                "shasum": ""
+            },
+            "require": {
+                "adbario/php-dot-notation": "^2.2",
+                "alibabacloud/tea": "^3.0",
+                "clagiordano/weblibs-configmanager": "^1.0",
+                "danielstjules/stringy": "^3.1",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "ext-simplexml": "*",
+                "ext-xmlwriter": "*",
+                "guzzlehttp/guzzle": "^6.3",
+                "mtdowling/jmespath.php": "^2.4",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "composer/composer": "^1.8",
+                "drupal/coder": "^8.3",
+                "ext-dom": "*",
+                "ext-pcre": "*",
+                "ext-sockets": "*",
+                "ext-spl": "*",
+                "mikey179/vfsstream": "^1.6",
+                "monolog/monolog": "^1.24",
+                "phpunit/phpunit": "^4.8.35|^5.4.3",
+                "psr/cache": "^1.0",
+                "symfony/dotenv": "^3.4",
+                "symfony/var-dumper": "^3.4"
+            },
+            "suggest": {
+                "ext-sockets": "To use client-side monitoring"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\Credentials\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com",
+                    "homepage": "http://www.alibabacloud.com"
+                }
+            ],
+            "description": "Alibaba Cloud Credentials for PHP",
+            "homepage": "https://www.alibabacloud.com/",
+            "keywords": [
+                "alibaba",
+                "alibabacloud",
+                "aliyun",
+                "client",
+                "cloud",
+                "credentials",
+                "library",
+                "sdk",
+                "tool"
+            ],
+            "time": "2020-05-07T11:13:23+00:00"
+        },
+        {
+            "name": "alibabacloud/endpoint-util",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alibabacloud-sdk-php/endpoint-util.git",
+                "reference": "2058160738e1aa6191aedc927e318ba801bc86a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/endpoint-util/zipball/2058160738e1aa6191aedc927e318ba801bc86a6",
+                "reference": "2058160738e1aa6191aedc927e318ba801bc86a6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0",
+                "symfony/var-dumper": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\Endpoint\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com"
+                }
+            ],
+            "description": "Alibaba Cloud Endpoint Library for PHP",
+            "time": "2020-04-02T04:21:55+00:00"
+        },
+        {
+            "name": "alibabacloud/ocr-20191230",
+            "version": "0.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alibabacloud-sdk-php/Ocr-20191230.git",
+                "reference": "73e696f3a2ec1acd00a5b3db468a385689b22f47"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/Ocr-20191230/zipball/73e696f3a2ec1acd00a5b3db468a385689b22f47",
+                "reference": "73e696f3a2ec1acd00a5b3db468a385689b22f47",
+                "shasum": ""
+            },
+            "require": {
+                "alibabacloud/endpoint-util": "^0.1.0",
+                "alibabacloud/openplatform-20191219": "^0.2.8",
+                "alibabacloud/tea-fileform": "^0.3.0",
+                "alibabacloud/tea-oss-sdk": "^0.2.2",
+                "alibabacloud/tea-oss-utils": "^0.2.0",
+                "alibabacloud/tea-rpc-utils": "^0.2.0",
+                "alibabacloud/tea-utils": "^0.2.0",
+                "php": ">5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\SDK\\Ocr\\V20191230\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com"
+                }
+            ],
+            "description": "Alibaba Cloud Ocr SDK Library for PHP",
+            "time": "2020-04-22T07:01:18+00:00"
+        },
+        {
+            "name": "alibabacloud/openplatform-20191219",
+            "version": "0.2.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alibabacloud-sdk-php/OpenPlatform-20191219.git",
+                "reference": "ec542fb73f6477542162daa81047b4a46fd92204"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/OpenPlatform-20191219/zipball/ec542fb73f6477542162daa81047b4a46fd92204",
+                "reference": "ec542fb73f6477542162daa81047b4a46fd92204",
+                "shasum": ""
+            },
+            "require": {
+                "alibabacloud/endpoint-util": "^0.1.0",
+                "alibabacloud/tea-rpc": "^0.1.4",
+                "alibabacloud/tea-utils": "^0.2.0",
+                "php": ">5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\SDK\\OpenPlatform\\V20191219\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com"
+                }
+            ],
+            "description": "Alibaba Cloud OpenPlatform SDK Library for PHP",
+            "time": "2020-05-06T13:18:47+00:00"
+        },
+        {
+            "name": "alibabacloud/tea",
+            "version": "3.1.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aliyun/tea-php.git",
+                "reference": "bc99a249a74747a562034296470a707f5fd7de68"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aliyun/tea-php/zipball/bc99a249a74747a562034296470a707f5fd7de68",
+                "reference": "bc99a249a74747a562034296470a707f5fd7de68",
+                "shasum": ""
+            },
+            "require": {
+                "adbario/php-dot-notation": "^2.2",
+                "danielstjules/stringy": "^3.1",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "ext-simplexml": "*",
+                "ext-xmlwriter": "*",
+                "guzzlehttp/guzzle": "^6.3",
+                "mtdowling/jmespath.php": "^2.4",
+                "php": ">=5.5",
+                "songshenzong/support": "^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35|^5.4.3",
+                "symfony/dotenv": "^3.4",
+                "symfony/var-dumper": "^3.4"
+            },
+            "suggest": {
+                "ext-sockets": "To use client-side monitoring"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\Tea\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com",
+                    "homepage": "http://www.alibabacloud.com"
+                }
+            ],
+            "description": "Client of Tea for PHP",
+            "homepage": "https://www.alibabacloud.com/",
+            "keywords": [
+                "alibabacloud",
+                "client",
+                "cloud",
+                "tea"
+            ],
+            "time": "2020-05-13T04:04:53+00:00"
+        },
+        {
+            "name": "alibabacloud/tea-fileform",
+            "version": "0.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alibabacloud-sdk-php/tea-fileform.git",
+                "reference": "f1a51c99c808fc24a31000b3975aa02c212cfe64"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/tea-fileform/zipball/f1a51c99c808fc24a31000b3975aa02c212cfe64",
+                "reference": "f1a51c99c808fc24a31000b3975aa02c212cfe64",
+                "shasum": ""
+            },
+            "require": {
+                "adbario/php-dot-notation": "^2.2",
+                "alibabacloud/tea": "^3.0",
+                "guzzlehttp/guzzle": "^6.5",
+                "php": ">5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35|^5.4.3",
+                "symfony/var-dumper": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\Tea\\FileForm\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com"
+                }
+            ],
+            "description": "Alibaba Cloud Tea File Library for PHP",
+            "time": "2020-03-25T09:51:10+00:00"
+        },
+        {
+            "name": "alibabacloud/tea-oss-sdk",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alibabacloud-sdk-php/tea-oss-sdk.git",
+                "reference": "51281a115b054df2ae01f6c1733e6755646ef6d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/tea-oss-sdk/zipball/51281a115b054df2ae01f6c1733e6755646ef6d4",
+                "reference": "51281a115b054df2ae01f6c1733e6755646ef6d4",
+                "shasum": ""
+            },
+            "require": {
+                "alibabacloud/credentials": "^1.1",
+                "alibabacloud/tea-fileform": "^0.3.0",
+                "alibabacloud/tea-oss-utils": "^0.2.0",
+                "alibabacloud/tea-utils": "^0.2.0",
+                "alibabacloud/tea-xml": "^0.1.0",
+                "php": ">5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\SDK\\OSS\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Aliyun Tea OSS SDK Library for PHP",
+            "time": "2020-03-25T07:22:57+00:00"
+        },
+        {
+            "name": "alibabacloud/tea-oss-utils",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alibabacloud-sdk-php/tea-oss-utils.git",
+                "reference": "f5d9c0a2283b9eebd04754967c6eeea701717e75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/tea-oss-utils/zipball/f5d9c0a2283b9eebd04754967c6eeea701717e75",
+                "reference": "f5d9c0a2283b9eebd04754967c6eeea701717e75",
+                "shasum": ""
+            },
+            "require": {
+                "alibabacloud/tea": "^3.0",
+                "php": ">5.5",
+                "ralouphie/mimey": "^2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35|^5.4.3",
+                "symfony/var-dumper": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\Tea\\OSSUtils\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com"
+                }
+            ],
+            "description": "Alibaba Cloud Tea OSS Utils Library for PHP",
+            "time": "2020-03-26T08:11:11+00:00"
+        },
+        {
+            "name": "alibabacloud/tea-rpc",
+            "version": "0.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alibabacloud-sdk-php/tea-rpc.git",
+                "reference": "b0f672aa9cfbc99cd0b1538ed14cec0e19218618"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/tea-rpc/zipball/b0f672aa9cfbc99cd0b1538ed14cec0e19218618",
+                "reference": "b0f672aa9cfbc99cd0b1538ed14cec0e19218618",
+                "shasum": ""
+            },
+            "require": {
+                "alibabacloud/credentials": "^1.1",
+                "alibabacloud/tea-rpc-utils": "^0.2.0",
+                "alibabacloud/tea-utils": "^0.2.0",
+                "php": ">5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\Tea\\Rpc\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com"
+                }
+            ],
+            "description": "Alibaba Cloud RPC Client",
+            "time": "2020-05-07T07:50:08+00:00"
+        },
+        {
+            "name": "alibabacloud/tea-rpc-utils",
+            "version": "0.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alibabacloud-sdk-php/tea-rpc-utils.git",
+                "reference": "97123643bb1e5c4f04e7aa2fb808f57ccdb99b76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/tea-rpc-utils/zipball/97123643bb1e5c4f04e7aa2fb808f57ccdb99b76",
+                "reference": "97123643bb1e5c4f04e7aa2fb808f57ccdb99b76",
+                "shasum": ""
+            },
+            "require": {
+                "alibabacloud/tea": "^3.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35|^5.4.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\Tea\\RpcUtils\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com"
+                }
+            ],
+            "description": "Alibaba Cloud RPC Utils SDK for PHP",
+            "time": "2020-05-13T08:28:06+00:00"
+        },
+        {
+            "name": "alibabacloud/tea-utils",
+            "version": "0.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alibabacloud-sdk-php/tea-utils.git",
+                "reference": "f45d60238e330d4b30c7052d5f3eebb25ff97843"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/tea-utils/zipball/f45d60238e330d4b30c7052d5f3eebb25ff97843",
+                "reference": "f45d60238e330d4b30c7052d5f3eebb25ff97843",
+                "shasum": ""
+            },
+            "require": {
+                "alibabacloud/tea": "^3.1",
+                "guzzlehttp/psr7": "^1.6",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8.35|~5.4.3",
+                "symfony/var-dumper": "^3.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\Tea\\Utils\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com"
+                }
+            ],
+            "description": "Alibaba Cloud Tea Utils for PHP",
+            "time": "2020-05-06T13:32:11+00:00"
+        },
+        {
+            "name": "alibabacloud/tea-xml",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alibabacloud-sdk-php/tea-xml.git",
+                "reference": "b5162e6f6d000879d1ca267d7276b63ce15bb213"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/tea-xml/zipball/b5162e6f6d000879d1ca267d7276b63ce15bb213",
+                "reference": "b5162e6f6d000879d1ca267d7276b63ce15bb213",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35|^5.4.3",
+                "symfony/var-dumper": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlibabaCloud\\Tea\\XML\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alibaba Cloud SDK",
+                    "email": "sdk-team@alibabacloud.com"
+                }
+            ],
+            "description": "Alibaba Cloud Tea XML Library for PHP",
+            "time": "2020-03-13T08:38:25+00:00"
+        },
         {
             "name": "api-platform/api-pack",
             "version": "v1.2.2",
@@ -329,6 +923,142 @@
                 "symfony3"
             ],
             "time": "2020-04-08T21:42:18+00:00"
+        },
+        {
+            "name": "clagiordano/weblibs-configmanager",
+            "version": "v1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/clagiordano/weblibs-configmanager.git",
+                "reference": "6ef4c27354368deb2f54b39bbe06601da8c873a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/clagiordano/weblibs-configmanager/zipball/6ef4c27354368deb2f54b39bbe06601da8c873a0",
+                "reference": "6ef4c27354368deb2f54b39bbe06601da8c873a0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "clagiordano/phpunit-result-printer": "^1",
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "clagiordano\\weblibs\\configmanager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Claudio Giordano",
+                    "email": "claudio.giordano@autistici.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "weblibs-configmanager is a tool library for easily read and access to php config array file and direct read/write configuration file / object",
+            "keywords": [
+                "clagiordano",
+                "configuration",
+                "manager",
+                "tool",
+                "weblibs"
+            ],
+            "time": "2019-09-25T22:10:10+00:00"
+        },
+        {
+            "name": "container-interop/container-interop",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/container-interop/container-interop.git",
+                "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/container-interop/container-interop/zipball/79cbf1341c22ec75643d841642dd5d6acd83bdb8",
+                "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8",
+                "shasum": ""
+            },
+            "require": {
+                "psr/container": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Interop\\Container\\": "src/Interop/Container/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
+            "homepage": "https://github.com/container-interop/container-interop",
+            "abandoned": "psr/container",
+            "time": "2017-02-14T19:40:03+00:00"
+        },
+        {
+            "name": "danielstjules/stringy",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danielstjules/Stringy.git",
+                "reference": "df24ab62d2d8213bbbe88cc36fc35a4503b4bd7e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/df24ab62d2d8213bbbe88cc36fc35a4503b4bd7e",
+                "reference": "df24ab62d2d8213bbbe88cc36fc35a4503b4bd7e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "symfony/polyfill-mbstring": "~1.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stringy\\": "src/"
+                },
+                "files": [
+                    "src/Create.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel St. Jules",
+                    "email": "danielst.jules@gmail.com",
+                    "homepage": "http://www.danielstjules.com"
+                }
+            ],
+            "description": "A string manipulation library with multibyte support",
+            "homepage": "https://github.com/danielstjules/Stringy",
+            "keywords": [
+                "UTF",
+                "helpers",
+                "manipulation",
+                "methods",
+                "multibyte",
+                "string",
+                "utf-8",
+                "utility",
+                "utils"
+            ],
+            "time": "2017-06-12T01:10:27+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -1671,6 +2401,157 @@
                 "rest"
             ],
             "time": "2020-04-27T06:40:36+00:00"
+        },
+        {
+            "name": "gs/image",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GordonSchmidt/GSImage.git",
+                "reference": "0f52ca2216820541b276c163365e2b6a348633c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GordonSchmidt/GSImage/zipball/0f52ca2216820541b276c163365e2b6a348633c1",
+                "reference": "0f52ca2216820541b276c163365e2b6a348633c1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "phpmd/phpmd": "~1.5",
+                "phpunit/phpunit": "~3.7",
+                "satooshi/php-coveralls": "~0.6",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "suggest": {
+                "ext-gd": "to use the image driver GSImage\\Driver\\GdDriver"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "GSImage": "src/",
+                    "GSImageTest": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gordon Schmidt",
+                    "email": "schmidt.gordon@web.de"
+                }
+            ],
+            "description": "Image handling for PHP",
+            "homepage": "https://github.com/GordonSchmidt/GSImage",
+            "keywords": [
+                "image",
+                "php"
+            ],
+            "time": "2014-02-06T06:25:38+00:00"
+        },
+        {
+            "name": "gs/ocr",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GordonSchmidt/GSOcr.git",
+                "reference": "b306f52d35fca8972957051d99cf96927051be79"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GordonSchmidt/GSOcr/zipball/b306f52d35fca8972957051d99cf96927051be79",
+                "reference": "b306f52d35fca8972957051d99cf96927051be79",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-servicemanager": "~2.2"
+            },
+            "require-dev": {
+                "phpmd/phpmd": "~1.5",
+                "phpunit/phpunit": "~3.7",
+                "satooshi/php-coveralls": "~0.6",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "GSOcr": "src/",
+                    "GSOcrTest": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gordon Schmidt",
+                    "email": "schmidt.gordon@web.de"
+                }
+            ],
+            "description": "OCR API for PHP",
+            "homepage": "https://github.com/GordonSchmidt/GSOcr",
+            "keywords": [
+                "OCR",
+                "php"
+            ],
+            "time": "2014-02-18T07:28:55+00:00"
+        },
+        {
+            "name": "gs/simple-ocr",
+            "version": "0.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GordonSchmidt/GSSimpleOcr.git",
+                "reference": "13969d5cdb71990f25269016c01ce7eaf115328c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GordonSchmidt/GSSimpleOcr/zipball/13969d5cdb71990f25269016c01ce7eaf115328c",
+                "reference": "13969d5cdb71990f25269016c01ce7eaf115328c",
+                "shasum": ""
+            },
+            "require": {
+                "gs/image": "~0.1",
+                "gs/ocr": "~0.1.2",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpmd/phpmd": "~1.5",
+                "phpunit/phpunit": "~3.7",
+                "satooshi/php-coveralls": "~0.6",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "GSSimpleOcr": "src/",
+                    "GSSimpleOcrTest": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gordon Schmidt",
+                    "email": "schmidt.gordon@web.de"
+                }
+            ],
+            "description": "Simple OCR with PHP",
+            "homepage": "https://github.com/GordonSchmidt/GSSimpleOcr",
+            "keywords": [
+                "OCR",
+                "php"
+            ],
+            "time": "2014-02-21T08:03:45+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3570,6 +4451,46 @@
             "time": "2019-03-08T08:55:37+00:00"
         },
         {
+            "name": "ralouphie/mimey",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ralouphie/mimey.git",
+                "reference": "8f74e6da73f9df7bd965e4e123f3d8fb9acb89ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ralouphie/mimey/zipball/8f74e6da73f9df7bd965e4e123f3d8fb9acb89ba",
+                "reference": "8f74e6da73f9df7bd965e4e123f3d8fb9acb89ba",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4|^7.0"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^1.1",
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mimey\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralph Khattar",
+                    "email": "ralph.khattar@gmail.com"
+                }
+            ],
+            "description": "PHP package for converting file extensions to MIME types and vice versa.",
+            "time": "2019-03-08T08:49:03+00:00"
+        },
+        {
             "name": "sensio/framework-extra-bundle",
             "version": "v5.5.5",
             "source": {
@@ -3792,6 +4713,71 @@
                 "text"
             ],
             "time": "2020-04-21T07:28:21+00:00"
+        },
+        {
+            "name": "songshenzong/support",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/songshenzong/support.git",
+                "reference": "34973c04ffcf226e503f1c3a69d30ac49f7621f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/songshenzong/support/zipball/34973c04ffcf226e503f1c3a69d30ac49f7621f6",
+                "reference": "34973c04ffcf226e503f1c3a69d30ac49f7621f6",
+                "shasum": ""
+            },
+            "require": {
+                "danielstjules/stringy": "^3.1",
+                "ext-json": "*",
+                "ext-simplexml": "*",
+                "ext-xml": "*",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "laravel/framework": "^5.8",
+                "phpunit/phpunit": "^4.8.35|^5.4.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Songshenzong\\Support\\StringsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Strings": "Songshenzong\\Support\\StringsFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Songshenzong\\Support\\": "src/"
+                },
+                "files": [
+                    "src/StringsHelpers.php",
+                    "src/BashEchoHelpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Songshenzong",
+                    "email": "i@songshenzong.com"
+                }
+            ],
+            "description": "The Songshenzong Support package.",
+            "homepage": "http://songshenzong.com",
+            "keywords": [
+                "laravel",
+                "support",
+                "tools",
+                "web"
+            ],
+            "time": "2019-08-29T01:59:12+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
@@ -9442,6 +10428,59 @@
             ],
             "abandoned": "laminas/laminas-eventmanager",
             "time": "2018-04-25T15:33:34+00:00"
+        },
+        {
+            "name": "zendframework/zend-servicemanager",
+            "version": "2.7.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-servicemanager.git",
+                "reference": "99ec9ed5d0f15aed9876433c74c2709eb933d4c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-servicemanager/zipball/99ec9ed5d0f15aed9876433c74c2709eb933d4c7",
+                "reference": "99ec9ed5d0f15aed9876433c74c2709eb933d4c7",
+                "shasum": ""
+            },
+            "require": {
+                "container-interop/container-interop": "~1.0",
+                "php": "^5.5 || ^7.0"
+            },
+            "require-dev": {
+                "athletic/athletic": "dev-master",
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "zendframework/zend-di": "~2.5",
+                "zendframework/zend-mvc": "~2.5"
+            },
+            "suggest": {
+                "ocramius/proxy-manager": "ProxyManager 0.5.* to handle lazy initialization of services",
+                "zendframework/zend-di": "Zend\\Di component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev",
+                    "dev-develop": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\ServiceManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "homepage": "https://github.com/zendframework/zend-servicemanager",
+            "keywords": [
+                "servicemanager",
+                "zf2"
+            ],
+            "abandoned": "laminas/laminas-servicemanager",
+            "time": "2018-06-22T14:49:54+00:00"
         }
     ],
     "packages-dev": [],
@@ -9453,9 +10492,9 @@
     "platform": {
         "php": "^7.2.5",
         "ext-ctype": "*",
+        "ext-curl": "*",
         "ext-iconv": "*",
-        "ext-pdo_sqlite": "*",
-        "ext-curl": "*"
+        "ext-pdo_sqlite": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"

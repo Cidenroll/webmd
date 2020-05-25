@@ -1,5 +1,9 @@
 
-F	php:S1172p",Remove the unused function parameter "$key".(§ÍêÁÿÿÿÿÿ
-n	php:S3776#"TRefactor this function to reduce its Cognitive Complexity from 28 to the 15 allowed.(²ƒæ²üÿÿÿÿ
-\	php:S1192Z"GDefine a constant instead of duplicating this literal "actual" 6 times.(ù»¤
-1	php:S2010q"Replace "or" with "||".(ı²İ´ÿÿÿÿÿ
+P	php:S1066."/Merge this if statement with the enclosing one.(ğ›Öêùÿÿÿÿ8àò©Ã¤.
+M	php:S1481%",Remove this unused "$engine" local variable.(ºˆ­‚øÿÿÿÿ8İ«šÃ¤.
+P	php:S1066("/Merge this if statement with the enclosing one.(Îÿ¸ùÿÿÿÿ8éó¨Ã¤.
+M	php:S1172z",Remove the unused function parameter "$key".(§ÍêÁÿÿÿÿÿ8ÎÅâÃ¤.
+c	php:S1192e"GDefine a constant instead of duplicating this literal "actual" 6 times.(ù»¤8ÎÅâÃ¤.
+n	php:S3776#"TRefactor this function to reduce its Cognitive Complexity from 78 to the 15 allowed.(²ƒæ²üÿÿÿÿ
+K	php:S10664"/Merge this if statement with the enclosing one.(©éùù8¢•ªÃ¤.
+8	php:S2010{"Replace "or" with "||".(ı²İ´ÿÿÿÿÿ8ÎÅâÃ¤.

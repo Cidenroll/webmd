@@ -47,7 +47,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a title="View original file" style="font-weight: bold" href="{{ asset('uploads/pdfs/confirmed/'~file.fileName) }}"><i class="fa fa-eye"></i></a>
+                                    <a title="View original file" style="font-weight: bold" href="{{ uploaded_asset(file.fileName) }}"><i class="fa fa-eye"></i></a>
                                     <a title="Medical comment" href="{{ path('medicalComment', {'file': key, 'id':  app.request.attributes.get('id') }) }}"><i class="fas fa-comment-medical"></i></a>
                                 </td>
                             </tr>

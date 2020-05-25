@@ -43,3 +43,31 @@ U
 %src/Controller/MainPageController.php,f\c\fc5c26fcc8660465420a7fd44f1bbe97b8766ce4
 D
 config/services.yaml,8\7\87042d1f46b57381244d70e7a42feeb7710727dc
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+C
+src/Entity/User.php,0\a\0a3e99b9da178509aeb5b3fa6f5dce46bc0eb8be
+\
+,src/Form/Model/UserRegistrationFormModel.php,8\8\8885c7fa49bd4c4e89bdd2d103ff692925e1c8cd
+M
+src/Form/UserFileFormType.php,e\f\efd5f724275395b21e2694f38e2eb040b4d98ee3
+U
+%templates/upload/profilepic.html.twig,5\7\572ac71bf47d7414edb9e900f4f754f6a4040e8f
+V
+&src/Services/ProfileUploaderHelper.php,8\5\8553819ea2133f2f2264d02322c887796428baae
+^
+.src/Controller/UploadUserProfileController.php,0\a\0af3d180e9f83b102542ac27d2802ccdefe0ed0d
+[
++src/Controller/DoctorRelationController.php,6\d\6db4454793c3e86f8ec969f2b47f0a9d9ca7d827
+A
+webpack.config.js,d\5\d5595158cc48f9bf3e51b06f6e6805a8fd2d6262
+H
+templates/base.html.twig,f\f\ffb3f1cfd73fdec1f0c80c63d0b5bbc1fff22022
+U
+%templates/medAccount/medacc.html.twig,4\1\41e9843ac5e93a71ae1313de184d0884c86d3569
+P
+ src/Form/UserProfileFormType.php,e\1\e10d62cf8643000120dd66655492168aa5225d27
+\
+,src/Repository/DoctorToPatientRepository.php,9\b\9b24a679de6ea29baf968211a77aa26f5aafa0c2
+M
+src/Parser/AbstractParser.php,4\8\48405fec7dcbae26f56e674c3e229fe313307b3b

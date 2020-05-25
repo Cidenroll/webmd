@@ -140,6 +140,28 @@
       <path value="$PROJECT_DIR$/vendor/symfony/templating" />
       <path value="$PROJECT_DIR$/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/vendor/league/flysystem-aws-s3-v3" />
+      <path value="$PROJECT_DIR$/vendor/container-interop/container-interop" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-servicemanager" />
+      <path value="$PROJECT_DIR$/vendor/gs/ocr" />
+      <path value="$PROJECT_DIR$/vendor/gs/image" />
+      <path value="$PROJECT_DIR$/vendor/gs/simple-ocr" />
+      <path value="$PROJECT_DIR$/vendor/clagiordano/weblibs-configmanager" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/tea-xml" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/tea-utils" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/tea-oss-utils" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/tea-oss-sdk" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/tea-rpc-utils" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/tea-rpc" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/openplatform-20191219" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/ocr-20191230" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/tea-fileform" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/tea" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/endpoint-util" />
+      <path value="$PROJECT_DIR$/vendor/alibabacloud/credentials" />
+      <path value="$PROJECT_DIR$/vendor/songshenzong/support" />
+      <path value="$PROJECT_DIR$/vendor/danielstjules/stringy" />
+      <path value="$PROJECT_DIR$/vendor/adbario/php-dot-notation" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/mimey" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
