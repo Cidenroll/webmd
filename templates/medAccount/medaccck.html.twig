@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    MSINGMD|Comment on file
+{% endblock %}
+
+{% block body  %}
+    <div class="container">
+        <div class="col">
+            <center>
+                You are logged in as <a class="font-weight-bold">{{ app.user.username }}</a> ({{ app.user.userType }})
+            </center>
+        </div>
+        {{ form_start(docToPatientForm) }}
+        {{ form_row(docToPatientForm.userFileCK) }}
+        {{ form_end(docToPatientForm) }}
+    </div>
+{% endblock %}

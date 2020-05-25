@@ -43,6 +43,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/reflection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/egulias/email-validator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fig/link-util" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/friendsofsymfony/ckeditor-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/gs/image" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/gs/ocr" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/gs/simple-ocr" />

@@ -15,11 +15,16 @@ use App\Entity\RelationsDp2;
 use App\Entity\User;
 use App\Entity\UserFile;
 use App\Form\DoctorPatientFormType;
+use App\Form\UserFileCKFormType;
+use App\Form\UserFileFormType;
 use App\Repository\RelationsDp2Repository;
 use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
@@ -178,9 +183,50 @@ class DoctorRelationController extends AbstractController
         ]);
     }
 
+    /**
+     * TODO: to be continued in a future run
+     * @Route("/md/{id}/{file}/ckComment", name="medicalCommentCK")
+     * @param $id
+     * @param $file
+     * @param Request $request
+     * @return Response
+     */
+    public function newcommentFormForDoctor($id, $file, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        /** @var UserFile $userFileEnt */
+        $userFileEnt = $this->getDoctrine()->getRepository(UserFile::class)->find($file);
 
+        $defaultData = ['userFileCK' => $userFileEnt->getComment()];
+        $form = $this->createFormBuilder()
+            ->add('userFileCK', CKEditorType::class, [
+                'label' => "Comments",
+                'mapped' => false,
+                'config' => [
+                    "uiColor" => "#ffffff",
+                    'toolbar' => 'standard'
+                ],
+                'data' => $userFileEnt->getComment()
+            ])
+            ->add('save', SubmitType::class, [
+                'attr' => ["class" => "btn btn-primary btn-block"]
+            ])->getForm();
 
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
 
+            $commentData = $form->get('userFileCK')->getData();
+            if ($commentData) {
+                $userFileEnt->setComment($commentData);
+                $em->persist($userFileEnt);
+                $em->flush();
+            }
+            return $this->redirect($this->generateUrl('medDetails', ['id'   =>  $id]));
+        }
 
+        return $this->render('medAccount/medaccck.html.twig', [
+            'docToPatientForm' => $form->createView(),
+        ]);
+    }
 }

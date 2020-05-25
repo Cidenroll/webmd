@@ -35,8 +35,10 @@ class UserProfileFormType extends AbstractType
                     ])
                 ],
             ])
-            ->add('save', SubmitType::class)
-        ;
+            ->add('save', SubmitType::class, [
+                    'attr' => ["class" => "btn btn-primary btn-block"]
+                ]
+            );
     }
 
     /**
