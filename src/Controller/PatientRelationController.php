@@ -48,6 +48,9 @@ class PatientRelationController extends AbstractController
     {
         /** @var User $currentUser */
         $currentUser = $this->security->getUser();
+        if (!$currentUser) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
         if ($currentUser->getUserType() != 'patient') {
             return $this->redirect($this->generateUrl('homepage'), 404);
         }

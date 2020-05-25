@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
+use Nexmo\Client\Exception\Server;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -53,6 +54,10 @@ class SubmitFormFromPatientController extends AbstractController
      */
     public function  submitPatientForm(Request $request, MailerInterface $mailer)
     {
+        $currentUser = $this->security->getUser();
+        if (!$currentUser) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
         if ($request->getMethod() == 'POST'){
 
             $email = $request->get('email');
@@ -81,12 +86,11 @@ class SubmitFormFromPatientController extends AbstractController
                     $basic  = new \Nexmo\Client\Credentials\Basic('68fd2098', 'mhtjTAOl5c0tpML5');
                     $client = new \Nexmo\Client($basic);
 
-                    $message = $client->message()->send([
-                        'to' => "+4".$doctorTelephone,
-                        'from' => 'MSING-SDM',
-                        'text' => sprintf("Hello doctor %s! The pacient %s has submitted a file to you. Please log in to your MSING-SDM application to view the files and diagnosis.", $docEntity->getEmail(), $currentPatient->getEmail())
-                    ]);
-
+                    try {
+                        $message = $client->message()->send(['to' => "+4" . $doctorTelephone, 'from' => 'MSING-SDM', 'text' => sprintf("Hello doctor %s! The pacient %s has submitted a file to you. Please log in to your MSING-SDM application to view the files and diagnosis.", $docEntity->getEmail(), $currentPatient->getEmail())]);
+                    } catch (\Nexmo\Client\Exception\Request $e) {
+                    } catch (Server $e) {
+                    }
                 }
             }
 

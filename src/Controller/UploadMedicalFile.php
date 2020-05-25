@@ -41,11 +41,14 @@ class UploadMedicalFile extends AbstractController
      */
     public function upload(Request $request, UploaderHelper $uploaderHelper)
     {
-        $form = $this->createForm(UserFileFormType::class);
-        $form->handleRequest($request);
-
         /** @var User $currentUser */
         $currentUser = $this->security->getUser();
+        if (!$currentUser) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+
+        $form = $this->createForm(UserFileFormType::class);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $pdfFile */

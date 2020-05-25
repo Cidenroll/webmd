@@ -35,12 +35,15 @@ class UploadUserProfileController extends AbstractController
      */
     public function uploadProfile($id, Request $request, ProfileUploaderHelper $uploaderHelper)
     {
+        /** @var User $currentUser */
+        $currentUser = $this->security->getUser();
+        if (!$currentUser) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $form = $this->createForm(UserProfileFormType::class, $user);
         $form->handleRequest($request);
-
-        /** @var User $currentUser */
-        $currentUser = $this->security->getUser();
 
         if ($form->isSubmitted() && $form->isValid())
         {

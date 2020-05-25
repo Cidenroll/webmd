@@ -49,6 +49,7 @@ class DoctorRelationController extends AbstractController
         $this->reld2prepo = $relationsDp2Repository;
         $this->userFileRepository = $userFileRepository;
         $this->userRepository = $userRepository;
+        $currentUser = $this->security->getUser();
     }
 
     /**
@@ -58,6 +59,10 @@ class DoctorRelationController extends AbstractController
     {
         /** @var User $currentUser */
         $currentUser = $this->security->getUser();
+
+        if (!$currentUser) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
         if ($currentUser->getUserType() != 'doctor') {
             return $this->redirect($this->generateUrl('homepage'), 404);
         }
@@ -110,6 +115,9 @@ class DoctorRelationController extends AbstractController
     {
         /** @var User $currentUser */
         $currentUser = $this->security->getUser();
+        if (!$currentUser) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
         $filesAssignedToDoctor = $this->userFileRepository->findFilesAssignedToDoctor($id, $currentUser->getId());
 
         /** @var UserFile $getUserFile */
@@ -138,6 +146,11 @@ class DoctorRelationController extends AbstractController
      */
     public function commentFormForDoctor($id, $file, Request $request)
     {
+        $currentUser = $this->security->getUser();
+        if (!$currentUser) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+
         $user = $this->userRepository->find($id);
         $userMail = $user->getEmail();
 

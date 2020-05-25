@@ -93,6 +93,9 @@ class OCRController extends AbstractController
         /** @var UserFile $userFileObj */
         $userFileObj = $this->userFileRepository->find($id);
 
+        if (!$currentUser) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
         // if the user is trying to alter the above id above, atleast make him look just into his own; else, return 404
         if ($currentUser->getId() != $userFileObj->getUserId()->getId() && $userFileObj->getUserId()) {
             return $this->redirect($this->generateUrl('notFound'));
@@ -169,6 +172,10 @@ class OCRController extends AbstractController
         $currentUser = $this->security->getUser();
         /** @var UserFile $userFileObj */
         $userFileObj = $this->userFileRepository->find($id);
+
+        if (!$currentUser) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
 
         // if the user is trying to alter the above id above, atleast make him look just into his own; else, return 404
         if ($currentUser->getId() != $userFileObj->getUserId()->getId()) {
