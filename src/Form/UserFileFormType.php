@@ -3,29 +3,41 @@
 namespace App\Form;
 
 use App\Entity\UserFile;
+use App\Services\LogAnalyticsService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Event\PostSubmitEvent;
+use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Validator\Constraints\File;
 
 class UserFileFormType extends AbstractType
 {
+    public const FILE_UPLOAD = 'file-upload';
+
     /**
      * @var Security
      */
     private $security;
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
 
     /**
      * UserFileFormType constructor.
      * @param Security $security
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(Security $security)
+    public function __construct(Security $security, EntityManagerInterface $entityManager)
     {
         $this->security = $security;
-
+        $this->entityManager = $entityManager;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)

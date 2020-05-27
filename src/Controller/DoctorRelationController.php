@@ -20,6 +20,7 @@ use App\Form\UserFileFormType;
 use App\Repository\RelationsDp2Repository;
 use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
+use App\Services\LogAnalyticsService;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -59,8 +60,11 @@ class DoctorRelationController extends AbstractController
 
     /**
      * @Route("/md", name="medAccount")
+     * @param LogAnalyticsService $analytics
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function getPatientsList(Request $request)
+    public function getPatientsList(LogAnalyticsService $analytics, Request $request)
     {
         /** @var User $currentUser */
         $currentUser = $this->security->getUser();
@@ -115,8 +119,11 @@ class DoctorRelationController extends AbstractController
 
     /**
      * @Route("/md/{id}", name="medDetails")
+     * @param $id
+     * @param LogAnalyticsService $analytics
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function getMedicalDocsFromPatient($id)
+    public function getMedicalDocsFromPatient($id, LogAnalyticsService $analytics)
     {
         /** @var User $currentUser */
         $currentUser = $this->security->getUser();
@@ -148,8 +155,13 @@ class DoctorRelationController extends AbstractController
 
     /**
      * @Route("/md/{id}/{file}/comment", name="medicalComment")
+     * @param $id
+     * @param $file
+     * @param Request $request
+     * @param LogAnalyticsService $analytics
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function commentFormForDoctor($id, $file, Request $request)
+    public function commentFormForDoctor($id, $file, Request $request, LogAnalyticsService $analytics)
     {
         $currentUser = $this->security->getUser();
         if (!$currentUser) {
@@ -189,9 +201,10 @@ class DoctorRelationController extends AbstractController
      * @param $id
      * @param $file
      * @param Request $request
+     * @param LogAnalyticsService $analytics
      * @return Response
      */
-    public function newcommentFormForDoctor($id, $file, Request $request)
+    public function newcommentFormForDoctor($id, $file, Request $request, LogAnalyticsService $analytics)
     {
         $em = $this->getDoctrine()->getManager();
         /** @var UserFile $userFileEnt */

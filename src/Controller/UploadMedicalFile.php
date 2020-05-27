@@ -11,6 +11,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\UserFile;
 use App\Form\UserFileFormType;
+use App\Services\LogAnalyticsService;
 use App\Services\UploaderHelper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,9 +38,10 @@ class UploadMedicalFile extends AbstractController
      * @Route("/upload_md", name="uploadfile")
      * @param Request $request
      * @param UploaderHelper $uploaderHelper
+     * @param LogAnalyticsService $analytics
      * @return RedirectResponse|Response
      */
-    public function upload(Request $request, UploaderHelper $uploaderHelper)
+    public function upload(Request $request, UploaderHelper $uploaderHelper, LogAnalyticsService $analytics)
     {
         /** @var User $currentUser */
         $currentUser = $this->security->getUser();

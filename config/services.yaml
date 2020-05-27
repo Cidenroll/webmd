@@ -43,3 +43,11 @@ services:
                 credentials:
                     key: '%env(AWS_S3_ACCESS_ID)%'
                     secret: '%env(AWS_S3_ACCESS_SECRET)%'
+
+    App\Services\LogAnalyticsService:
+        arguments: ['@Symfony\Component\Security\Core\Security', '@Doctrine\ORM\EntityManagerInterface']
+        calls:
+            - [setCurrentUser]
+            - [setCurrentRoute, ['@request_stack']]
+            - [getCurrentRouteParams]
+            - [postStatisticLog]

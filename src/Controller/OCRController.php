@@ -16,6 +16,7 @@ use App\Parser\AnalysisParser;
 use App\Parser\MedicalReportParser;
 use App\Repository\RelationsPd2Repository;
 use App\Repository\UserFileRepository;
+use App\Services\LogAnalyticsService;
 use App\Services\UploaderHelper;
 use Aws\S3\S3Client;
 use GSSimpleOcr\Service\SimpleOcrService;
@@ -30,6 +31,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Security\Core\Security;
+use thiagoalessio\TesseractOCR\TesseractOCR;
 
 
 class OCRController extends AbstractController
@@ -82,10 +84,10 @@ class OCRController extends AbstractController
      * @Route("/medform/{id}", name="medform")
      * @param $id
      * @param UploaderHelper $uploaderHelper
+     * @param LogAnalyticsService $analytics
      * @return RedirectResponse|Response
-     * @throws \League\Flysystem\FileNotFoundException
      */
-    public function getFileAndOcr($id, UploaderHelper $uploaderHelper)
+    public function getFileAndOcr($id, UploaderHelper $uploaderHelper, LogAnalyticsService $analytics)
     {
         // check id
         /** @var User $currentUser */
@@ -108,7 +110,6 @@ class OCRController extends AbstractController
 
 //        $stream = fopen($uploaderHelper->getPublicPath($userFile->getImagePath()), 'r');
         $stream = file_get_contents($uploaderHelper->getPublicPath($userFile->getImagePath()));
-
 
         $ocrRawOutput = [];
         try {
@@ -163,9 +164,10 @@ class OCRController extends AbstractController
     /**
      * @Route("/medform/{id}/viewComment", name="viewComment")
      * @param $id
+     * @param LogAnalyticsService $analytics
      * @return RedirectResponse|Response
      */
-    public function viewMedicalComment($id)
+    public function viewMedicalComment($id, LogAnalyticsService $analytics)
     {
         // check id
         /** @var User $currentUser */

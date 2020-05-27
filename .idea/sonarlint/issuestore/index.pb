@@ -71,3 +71,23 @@ P
 ,src/Repository/DoctorToPatientRepository.php,9\b\9b24a679de6ea29baf968211a77aa26f5aafa0c2
 M
 src/Parser/AbstractParser.php,4\8\48405fec7dcbae26f56e674c3e229fe313307b3b
+Z
+*templates/medAccount/viewcomment.html.twig,9\d\9dda3d8ec1ffb2f7878aa0f332f521db11bfab17
+U
+%src/Controller/NotFoundController.php,d\7\d7e768d1ff6aca23aae1e78f22cdaae5007cf246
+U
+%src/Controller/SecurityController.php,7\c\7cc876ecdb4df676c79a6188e9f3ac45e5079434
+I
+config/packages/twig.yaml,8\a\8a5c55d47e428b829ef7645f00a0b768cef8a5bf
+Y
+)templates/medAccount/medcomment.html.twig,4\c\4cc43bbb5100dbef66013729af168da4e6c904a3
+Y
+)templates/medAccount/meddetails.html.twig,d\7\d722ed634f2b0f1ea76dfa30f74af774c547969f
+T
+$public/bundles/fosckeditor/config.js,6\3\63e9ab1e539e774a17f94fc7e18bc2ca7773e3ad
+Z
+*public/bundles/fosckeditor/build-config.js,d\c\dc08199b466b4c0ac19123a9d3cd81588500fe23
+8
+Procfile,b\c\bc3c68e880d1a01632bce79f69dd1387c7ba9c54
+@
+assets/js/app.js,a\1\a100a8b5c188567ddcb647c9e579d4f07284fe87

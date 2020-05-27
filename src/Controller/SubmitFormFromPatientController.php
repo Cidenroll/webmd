@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
+use App\Services\LogAnalyticsService;
 use Nexmo\Client\Exception\Server;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,11 +49,10 @@ class SubmitFormFromPatientController extends AbstractController
      * @Route("/patientFormSubmit", name="patientFormSubmit")
      * @param Request $request
      * @param MailerInterface $mailer
-     * @param TexterInterface $textInterface
+     * @param LogAnalyticsService $analytics
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \Symfony\Component\Notifier\Exception\TransportExceptionInterface
      */
-    public function  submitPatientForm(Request $request, MailerInterface $mailer)
+    public function  submitPatientForm(Request $request, MailerInterface $mailer, LogAnalyticsService $analytics)
     {
         $currentUser = $this->security->getUser();
         if (!$currentUser) {

@@ -1,3 +1,8 @@
 
-d	php:S11429"OReduce the number of returns of this function 4, down to the maximum allowed 3.(£¼ÉŞ
-]	php:S1192~"HDefine a constant instead of duplicating this literal "comment" 3 times.(³ÜÅª
+V	php:S1135»"4Complete the task associated to this "TODO" comment.(ëÏØêûÿÿÿÿ8÷®©ì¤.
+k	php:S1142?"OReduce the number of returns of this function 5, down to the maximum allowed 3.(£¼ÉŞ8÷®©ì¤.
+m	php:S1192È"KDefine a constant instead of duplicating this literal "userFileCK" 3 times.(şìÁ­ûÿÿÿÿ8÷®©ì¤.
+e	php:S1192‹"HDefine a constant instead of duplicating this literal "comment" 3 times.(³ÜÅª8÷®©ì¤.
+j	php:S1192E"IDefine a constant instead of duplicating this literal "homepage" 4 times.(ºŸ¼Çûÿÿÿÿ8÷®©ì¤.
+S	php:S1481È"1Remove this unused "$defaultData" local variable.(şìÁ­ûÿÿÿÿ8÷®©ì¤.
+R	php:S14819"1Remove this unused "$currentUser" local variable.(Ë¥Îüÿÿÿÿ8÷®©ì¤.

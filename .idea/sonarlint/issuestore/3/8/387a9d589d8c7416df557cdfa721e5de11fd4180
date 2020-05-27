@@ -1,10 +1,13 @@
 
-G	php:S1481:"+Remove this unused "$email" local variable.(¶ξ…¤8ªΠ”¤.
-E	php:S1481;")Remove this unused "$sex" local variable.(Ύα¶ζ8ªΠ”¤.
-J	php:S1481<")Remove this unused "$cnp" local variable.(ΒΖ›ÿÿÿÿÿ8ªΠ”¤.
-E	php:S1481=")Remove this unused "$age" local variable.(ε‹£χ8ªΠ”¤.
-K	php:S1481>"/Remove this unused "$institute" local variable.(λ―δΎ8ªΠ”¤.
-F	php:S1481?"+Remove this unused "$dates" local variable.(―µ΅-8ªΠ”¤.
-Q	php:S1481@"0Remove this unused "$diagnostic" local variable.(£ΐ¬ϋÿÿÿÿÿ8ªΠ”¤.
-O	php:S1481A"3Remove this unused "$resultSummary" local variable.(ωτ8ªΠ”¤.
-H	php:S1481T"-Remove this unused "$message" local variable.(®Ξ{8ªΠ”¤.
+Q	php:S1481E"0Remove this unused "$diagnostic" local variable.(£ΐ¬ϋÿÿÿÿÿ8ªΠ”¤.
+p	php:S37767"TRefactor this function to reduce its Cognitive Complexity from 18 to the 15 allowed.(Η–Χ«8°ω¨ε¤.
+E	php:S1481B")Remove this unused "$age" local variable.(ε‹£χ8ªΠ”¤.
+I	php:S1481Z"-Remove this unused "$message" local variable.(Ò°ω•8°ω¨ε¤.
+E	php:S1481@")Remove this unused "$sex" local variable.(Ύα¶ζ8ªΠ”¤.
+G	php:S1481?"+Remove this unused "$email" local variable.(¶ξ…¤8ªΠ”¤.
+J	php:S1481A")Remove this unused "$cnp" local variable.(ΒΖ›ÿÿÿÿÿ8ªΠ”¤.
+K	php:S1481C"/Remove this unused "$institute" local variable.(λ―δΎ8ªΠ”¤.
+O	php:S1481F"3Remove this unused "$resultSummary" local variable.(ωτ8ªΠ”¤.
+Iphp:S108\")Either remove or fill this block of code.(€†ϊÿÿÿÿ8°ω¨ε¤.
+F	php:S1481D"+Remove this unused "$dates" local variable.(―µ΅-8ªΠ”¤.
+Dphp:S108[")Either remove or fill this block of code.(¤φ8°ω¨ε¤.

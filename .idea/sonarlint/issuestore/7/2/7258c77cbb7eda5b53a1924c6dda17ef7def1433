@@ -1,8 +1,9 @@
 
-:php:S125j"Remove this commented out code.(•¦è8ÅúŒ¼¤.
-w	php:S3923|"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¹ğÄ÷8ô’ó±¤.
-T	php:S1481ò"7Remove this unused "$parsedTextEngine1" local variable.(ÌÜĞ»8ˆ»„Ã¤.
-S	php:S1481h"2Remove this unused "$userFilePath" local variable.(ÄÇ©èşÿÿÿÿ8§ğ…¼¤.
-d	php:S1192s"HDefine a constant instead of duplicating this literal "details" 6 times.(­¨äÃ8ô’ó±¤.
-@php:S125õ"Remove this commented out code.(ıœÏÏşÿÿÿÿ8ˆ»„Ã¤.
-x	php:S3923"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¹ğÄ÷8ô’ó±¤.
+S	php:S1481k"2Remove this unused "$userFilePath" local variable.(ÄÇ©èşÿÿÿÿ8§ğ…¼¤.
+T	php:S1481ö"7Remove this unused "$parsedTextEngine1" local variable.(ÌÜĞ»8ˆ»„Ã¤.
+@php:S125ù"Remove this commented out code.(ıœÏÏşÿÿÿÿ8ˆ»„Ã¤.
+:php:S125m"Remove this commented out code.(•¦è8ÅúŒ¼¤.
+d	php:S1192v"HDefine a constant instead of duplicating this literal "details" 6 times.(­¨äÃ8ô’ó±¤.
+x	php:S3923"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¹ğÄ÷8ô’ó±¤.
+p	php:S1142X"OReduce the number of returns of this function 4, down to the maximum allowed 3.(ÚÔ£şÿÿÿÿ8»¤å¤.
+w	php:S3923"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¹ğÄ÷8ô’ó±¤.

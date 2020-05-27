@@ -7,6 +7,7 @@ use App\Form\Model\UserRegistrationFormModel;
 use App\Form\UserRegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
+use App\Services\LogAnalyticsService;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,8 +37,9 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/logout", name="app_logout")
+     * @param LogAnalyticsService $analytics
      */
-    public function logout(): void
+    public function logout(LogAnalyticsService $analytics): void
     {
         throw new LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
@@ -106,8 +108,10 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/terms", name="viewT&C")
+     * @param LogAnalyticsService $analytics
+     * @return Response
      */
-    public function viewTerms(): Response
+    public function viewTerms(LogAnalyticsService $analytics): Response
     {
         return $this->render(
             'terms.html.twig', []

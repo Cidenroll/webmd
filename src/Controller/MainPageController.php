@@ -12,6 +12,7 @@ namespace App\Controller;
 use App\Entity\UserFile;
 use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
+use App\Services\LogAnalyticsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -47,8 +48,10 @@ class MainPageController extends AbstractController
 
     /**
      * @Route("/", name="homepage")
+     * @param LogAnalyticsService $analytics
+     * @return Response|null
      */
-    public function homepage(): ?Response
+    public function homepage(LogAnalyticsService $analytics): ?Response
     {
         $currentUser = $this->security->getUser();
         $em = $this->getDoctrine()->getManager();

@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserProfileFormType;
+use App\Services\LogAnalyticsService;
 use App\Services\ProfileUploaderHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -31,9 +32,10 @@ class UploadUserProfileController extends AbstractController
      * @param $id
      * @param Request $request
      * @param ProfileUploaderHelper $uploaderHelper
+     * @param LogAnalyticsService $analytics
      * @return Response
      */
-    public function uploadProfile($id, Request $request, ProfileUploaderHelper $uploaderHelper)
+    public function uploadProfile($id, Request $request, ProfileUploaderHelper $uploaderHelper, LogAnalyticsService $analytics)
     {
         /** @var User $currentUser */
         $currentUser = $this->security->getUser();
