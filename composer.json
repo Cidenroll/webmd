@@ -44,7 +44,7 @@
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "5.0.*",
         "thiagoalessio/tesseract_ocr": "^2.9",
-        "twig/cssinliner-extra": "^3.0",
+        "twig/cssinliner-extra": "^3.0"
     },
     "require-dev": {
     },
