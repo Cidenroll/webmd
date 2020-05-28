@@ -81,6 +81,7 @@ class PatientRelationController extends AbstractController
             }
         }
 
+
         $doctorDetails = [];
         $doctorsList = $this->pd2Repository->findAllRelationsToDoctorsByPatientId($currentUser->getId());
         foreach ($doctorsList as $doctor) {
@@ -92,6 +93,7 @@ class PatientRelationController extends AbstractController
 
             'PatientToDocForm' => $form->createView(),
             'docsList'   => $doctorDetails,
+            'doctorCount' => count($this->pd2Repository->getRemainingAvailableDoctorsForPatient($currentUser->getId()))
         ]);
     }
 

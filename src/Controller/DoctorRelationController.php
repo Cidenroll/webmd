@@ -24,6 +24,7 @@ use App\Services\LogAnalyticsService;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -62,7 +63,7 @@ class DoctorRelationController extends AbstractController
      * @Route("/md", name="medAccount")
      * @param LogAnalyticsService $analytics
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function getPatientsList(LogAnalyticsService $analytics, Request $request)
     {
@@ -109,9 +110,11 @@ class DoctorRelationController extends AbstractController
             $fileDetailsList[$patient->getEmail()]['profile'] = $patient->getProfilePicturePath();
         }
 
+
         return $this->render('medAccount/medacc.html.twig', [
             'docToPatientForm' => $form->createView(),
-            'patientList'   =>  $fileDetailsList
+            'patientList'   =>  $fileDetailsList,
+            'remainingPatients' => count($this->reld2prepo->getRemainingAvailablePatientsForDoctor($currentUser->getId()))
         ]);
 
     }
@@ -121,7 +124,7 @@ class DoctorRelationController extends AbstractController
      * @Route("/md/{id}", name="medDetails")
      * @param $id
      * @param LogAnalyticsService $analytics
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function getMedicalDocsFromPatient($id, LogAnalyticsService $analytics)
     {
@@ -159,7 +162,7 @@ class DoctorRelationController extends AbstractController
      * @param $file
      * @param Request $request
      * @param LogAnalyticsService $analytics
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function commentFormForDoctor($id, $file, Request $request, LogAnalyticsService $analytics)
     {
