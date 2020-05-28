@@ -50,6 +50,18 @@ class UserFile
      */
     private $fileContent;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    public function __construct()
+    {
+        if (!$this->createdAt) {
+            $this->setCreatedAt(new \DateTime());
+        }
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -139,6 +151,18 @@ class UserFile
     public function getImagePath(): string
     {
         return urlencode($this->getFileName());
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 
 }
