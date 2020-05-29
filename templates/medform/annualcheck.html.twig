@@ -60,11 +60,30 @@
                     {% endif %}
                     {% if patientDoctors is not empty %}
                         <tr>
+                            <td colspan="2">
+                                {% if patientInfo.selectedDoctorName is defined %}
+                                    <i>
+                                        Latest submitted to doctor: <span style="color: red; font-weight: bold">{{ patientInfo.selectedDoctorName }}</span><br />
+                                    </i>
+                                {% endif %}
+                                {% if lastCommentingDoctor is defined %}
+                                    <i>
+                                        Latest commented: <span style="color: red; font-weight: bold">{{ lastCommentingDoctor }}</span><br />
+                                    </i>
+                                {% endif %}
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td><label for="doctor">Assign doctor</label></td>
                             <td>
                                <select id="doctor" name="doctor">
                                    {% for doc in patientDoctors %}
-                                      <option value="{{ doc.id }}">{{ doc.email }}</option>
+                                       {% if patientInfo.selectedDoctor is defined and patientInfo.selectedDoctor == doc.id %}
+                                           <option value="{{ doc.id }}" selected>{{ doc.email }}</option>
+                                       {% else %}
+                                           <option value="{{ doc.id }}">{{ doc.email }}</option>
+                                       {% endif %}
                                    {% endfor %}
                                </select>
                             </td>

@@ -55,6 +55,11 @@ class UserFile
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $latestCommentedDoctorID;
+
     public function __construct()
     {
         if (!$this->createdAt) {
@@ -161,6 +166,18 @@ class UserFile
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getLatestCommentedDoctorID(): ?string
+    {
+        return $this->latestCommentedDoctorID;
+    }
+
+    public function setLatestCommentedDoctorID(string $latestCommentedDoctorID): self
+    {
+        $this->latestCommentedDoctorID = $latestCommentedDoctorID;
 
         return $this;
     }

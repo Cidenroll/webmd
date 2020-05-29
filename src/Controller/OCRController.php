@@ -9,7 +9,7 @@
 namespace App\Controller;
 
 
-use AlibabaCloud\SDK\Ocr\V20191230\Ocr;
+use App\Entity\ProcessedFiles;
 use App\Entity\User;
 use App\Entity\UserFile;
 use App\Parser\AnalysisParser;
@@ -18,24 +18,21 @@ use App\Repository\RelationsPd2Repository;
 use App\Repository\UserFileRepository;
 use App\Services\LogAnalyticsService;
 use App\Services\UploaderHelper;
-use Aws\S3\S3Client;
-use GSSimpleOcr\Service\SimpleOcrService;
-use League\Flysystem\FilesystemInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Smalot\PdfParser\Parser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-use Symfony\Component\HttpFoundation\StreamedResponse;
-use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Security\Core\Security;
-use thiagoalessio\TesseractOCR\TesseractOCR;
 
 
 class OCRController extends AbstractController
 {
+
+    private const USERFILE_ID       = 'userFileId';
+    private const PATIENT_INFO      = 'patientInfo';
+    private const PATIENT_DOCTORS   = 'patientDoctors';
+    private const LATEST_COMMENTED  = 'lastCommentingDoctor';
 
     private $apiKey;
 
@@ -57,27 +54,19 @@ class OCRController extends AbstractController
      */
     private $pd2Repository;
 
-    /**
-     * @var S3ClientAlias|S3Client
-     */
-    private $s3Client;
-
 
     /**
      * OCRController constructor.
-     * @param S3ClientAlias $s3Client
-     * @param FilesystemInterface $publicUploadFileSystem
      * @param Security $security
      * @param UserFileRepository $userFileRepository
      * @param RelationsPd2Repository $pd2Repository
      */
-    public function __construct(S3Client $s3Client, Security $security, UserFileRepository $userFileRepository, RelationsPd2Repository $pd2Repository)
+    public function __construct(Security $security, UserFileRepository $userFileRepository, RelationsPd2Repository $pd2Repository)
     {
         $this->security = $security;
         $this->userFileRepository = $userFileRepository;
         $this->usedPDFParser = false;
         $this->pd2Repository = $pd2Repository;
-        $this->s3Client = $s3Client;
     }
 
     /**
@@ -99,16 +88,49 @@ class OCRController extends AbstractController
             return $this->redirect($this->generateUrl('homepage'));
         }
         // if the user is trying to alter the above id above, atleast make him look just into his own; else, return 404
-        if ($currentUser->getId() != $userFileObj->getUserId()->getId() && $userFileObj->getUserId()) {
+        if ($userFileObj->getUserId() && $currentUser->getId() != $userFileObj->getUserId()->getId()) {
             return $this->redirect($this->generateUrl('notFound'));
         }
 
+        /*****************************************************
+        // search for the processed file in the db, if found, skip the OCR part
+        /** @var ProcessedFiles $processedFile */
+        $processedFiles = $this->getDoctrine()->getRepository(ProcessedFiles::class)->findProcessedFileByFileID($id);
+        /** @var ProcessedFiles $processedFile */
+        if ($processedFiles && $processedFile = $processedFiles[0]) {
+            $content = json_decode($processedFile->getContent(), true);
+
+            $contentObj = new \stdClass();
+            $contentObj->sex = $content['sex'];
+            $contentObj->cnp = $content['cnp'];
+            $contentObj->age = $content['age'];
+            $contentObj->institute = $content['institute'];
+            $contentObj->dates = $content['dates'];
+            $contentObj->diagnostic = $content['resultSummary'];
+            $contentObj->highestVals = $content['diagnostic']?:null;
+            $contentObj->selectedDoctor = $content['docId']?:0;
+            $contentObj->selectedDoctorName = $this->getDoctrine()->getRepository(User::class)->find($content['docId'])->getEmail();
+
+            $lastCommentingDoctor = $this->getDoctrine()->getRepository(User::class)->find($this->userFileRepository->find($id)->getLatestCommentedDoctorID());
+            $lastCommentDocEmail = null;
+            if ($lastCommentingDoctor) {
+                $lastCommentDocEmail = $lastCommentingDoctor->getEmail();
+            }
+
+            return $this->render('medform/annualcheck.html.twig',[
+                    self::USERFILE_ID        => $id,
+                    self::PATIENT_INFO       => $contentObj,
+                    self::PATIENT_DOCTORS    => $this->pd2Repository->findAllRelationsToDoctorsByPatientId($currentUser->getId()),
+                    self::LATEST_COMMENTED   => $lastCommentDocEmail
+                ]
+            );
+        }
+        /*****************************************************************
+         *
+         */
+
         $this->apiKey = $this->getParameter('ocr_apikey');
-
         $userFile = $this->userFileRepository->find($id);
-        $userFilePath = sprintf("%s/%s",$this->getParameter('pdf_directory'), $userFile->getFileName());
-
-//        $stream = fopen($uploaderHelper->getPublicPath($userFile->getImagePath()), 'r');
         $stream = file_get_contents($uploaderHelper->getPublicPath($userFile->getImagePath()));
 
         $ocrRawOutput = [];
@@ -134,9 +156,9 @@ class OCRController extends AbstractController
             }
 
             return $this->render('medform/annualcheck.html.twig',[
-                    "userFileId"        =>  $id,
-                    "patientInfo" => $analysisParserObj->getAllData(),
-                    "patientDoctors"    =>  $this->pd2Repository->findAllRelationsToDoctorsByPatientId($currentUser->getId())
+                    self::USERFILE_ID       =>  $id,
+                    self::PATIENT_INFO      => $analysisParserObj->getAllData(),
+                    self::PATIENT_DOCTORS   =>  $this->pd2Repository->findAllRelationsToDoctorsByPatientId($currentUser->getId())
                 ]
             );
         }
@@ -151,14 +173,12 @@ class OCRController extends AbstractController
             }
 
             return $this->render('medform/annualcheck.html.twig',[
-                    "userFileId"        =>  $id,
-                    "patientInfo" => $analysisParserObj->getAllData(),
-                    "patientDoctors"    =>  $this->pd2Repository->findAllRelationsToDoctorsByPatientId($currentUser->getId())
+                    self::USERFILE_ID       =>  $id,
+                    self::PATIENT_INFO      => $analysisParserObj->getAllData(),
+                    self::PATIENT_DOCTORS   =>  $this->pd2Repository->findAllRelationsToDoctorsByPatientId($currentUser->getId())
                 ]
             );
         }
-
-
     }
 
     /**
@@ -188,9 +208,7 @@ class OCRController extends AbstractController
             'fileName'  =>  $userFileObj->getFileName(),
             'comment'   =>  $userFileObj->getComment()
         ]);
-
     }
-
 
     /**
      * @param String $filePath
@@ -246,9 +264,7 @@ class OCRController extends AbstractController
 
         $textEngine1 = json_decode($serverOutput, true);
         $parsedTextEngine1 = $textEngine1['ParsedResults'][0]['ParsedText'];
-
-        $mergeEngines['OCRSPACEV1'] = $parsedTextEngine2;
-        //$mergeEngines = implode('\n^^^^^%%^^^^^^\n', [$parsedTextEngine2,$parsedTextEngine1]);
+        $mergeEngines['OCRSPACEV1'] = $parsedTextEngine1;
 
         $this->usedPDFParser = true;
         $details = $pdf->getDetails();

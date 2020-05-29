@@ -9,6 +9,8 @@
 namespace App\Controller;
 
 
+use App\Entity\ProcessedFiles;
+use App\Entity\UserFile;
 use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
 use App\Services\LogAnalyticsService;
@@ -71,6 +73,47 @@ class SubmitFormFromPatientController extends AbstractController
             $docId = $request->get('doctor');
             $checkMail = $request->get('checkMail');
             $userFileId = $request->get('userFileId');
+
+            /** @var UserFile $userFile */
+            $userFile = $this->userFileRepository->find($userFileId);
+            $lastCommentingDoctorId =  $userFile->getLatestCommentedDoctorID()?:"";
+
+            $content = [
+                'docId'         => $docId,
+                'reminder'     => $checkMail,
+                'email' => $email,
+                'sex'   => $sex,
+                'cnp'   => $cnp,
+                'age'   => $age,
+                'institute' => $institute,
+                'dates'     => $dates,
+                'diagnostic'=> $diagnostic,
+                'resultSummary' => $resultSummary,
+            ];
+
+            $em = $this->getDoctrine()->getManager();
+            $resultsProcessedFile = $em->getRepository(ProcessedFiles::class)->findProcessedFileByFileID($userFileId);
+
+            /** @var ProcessedFiles $currentProcessedFile */
+            if (!empty($resultsProcessedFile)) {
+                $currentProcessedFile = $resultsProcessedFile[0];
+                $currentProcessedFile->setUpdatedAt(new \DateTime());
+                $currentProcessedFile->setLastCommentingDoctorId((int)$lastCommentingDoctorId);
+                $currentProcessedFile->setPatientId($currentUser->getId());
+                $currentProcessedFile->setContent(json_encode($content));
+                $em->persist($currentProcessedFile);
+                $em->flush();
+            }
+            else {
+                $processedFile = new ProcessedFiles();
+                $processedFile->setFileId($userFileId);
+                $processedFile->setLastCommentingDoctorId((int)$lastCommentingDoctorId);
+                $processedFile->setPatientId($currentUser->getId());
+                $processedFile->setContent(json_encode($content));
+                $em->persist($processedFile);
+                $em->flush();
+            }
+
 
 
             if ($checkMail) {

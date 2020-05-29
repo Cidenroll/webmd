@@ -73,7 +73,7 @@ class DoctorRelationController extends AbstractController
         if (!$currentUser) {
             return $this->redirect($this->generateUrl('homepage'));
         }
-        if ($currentUser->getUserType() != 'doctor') {
+        if ($currentUser->getUserType() !== 'doctor') {
             return $this->redirect($this->generateUrl('homepage'), 404);
         }
 
@@ -176,15 +176,14 @@ class DoctorRelationController extends AbstractController
 
         $userFile = $this->userFileRepository->find($file);
 
-        if ($request->getMethod() == 'POST') {
+        if ($request->getMethod() === 'POST') {
            $comment = urldecode(filter_var(strip_tags(htmlspecialchars($request->get('comment'))), FILTER_SANITIZE_FULL_SPECIAL_CHARS));
            $comment = trim($comment);
 
            $userFile->setComment($comment);
+           $userFile->setLatestCommentedDoctorID($currentUser->getId());
            $em = $this->getDoctrine()->getManager();
            $em->flush();
-
-
 
            return $this->redirect($this->generateUrl('medDetails', ['id'   =>  $id]));
 
@@ -207,7 +206,7 @@ class DoctorRelationController extends AbstractController
      * @param LogAnalyticsService $analytics
      * @return Response
      */
-    public function newcommentFormForDoctor($id, $file, Request $request, LogAnalyticsService $analytics)
+    public function newcommentFormForDoctor($id, $file, Request $request, LogAnalyticsService $analytics): Response
     {
         $em = $this->getDoctrine()->getManager();
         /** @var UserFile $userFileEnt */
