@@ -34,7 +34,6 @@ class ProcessedFilesRepository extends ServiceEntityRepository
         ;
     }
 
-
     /*
     public function findOneBySomeField($value): ?ProcessedFiles
     {

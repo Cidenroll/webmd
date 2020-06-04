@@ -8,9 +8,7 @@
 
 namespace App\Controller;
 
-
-
-
+use App\Entity\ProcessedFiles;
 use App\Entity\RelationsDp2;
 use App\Entity\User;
 use App\Entity\UserFile;
@@ -22,11 +20,14 @@ use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
 use App\Services\LogAnalyticsService;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Liip\ImagineBundle\Exception\Config\Filter\NotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
@@ -56,7 +57,6 @@ class DoctorRelationController extends AbstractController
         $this->reld2prepo = $relationsDp2Repository;
         $this->userFileRepository = $userFileRepository;
         $this->userRepository = $userRepository;
-        $currentUser = $this->security->getUser();
     }
 
     /**
@@ -117,6 +117,89 @@ class DoctorRelationController extends AbstractController
             'remainingPatients' => count($this->reld2prepo->getRemainingAvailablePatientsForDoctor($currentUser->getId()))
         ]);
 
+    }
+
+    /**
+     * @Route("/epf/{file}", name="viewProcessedFile")
+     * @param $file
+     * @param LogAnalyticsService $analytics
+     * @return Response
+     * @throws NotFoundException
+     */
+    public function checkProcessedFile($file, LogAnalyticsService $analytics)
+    {
+        $processedFiles = $this->getDoctrine()->getRepository(ProcessedFiles::class)->findProcessedFileByFileID($file);
+
+        if (empty($processedFiles)) {
+            throw new NotFoundHttpException("Could not find the processed file.");
+        }
+
+        /** @var ProcessedFiles $processedFile */
+        $processedFile = $processedFiles[0];
+
+        $content = json_decode($processedFile->getContent(), true);
+        $lastSubmittedTo = $this->userRepository->find($content['docId']);
+
+        $userFile = $this->userFileRepository->find($file);
+        $lastCommentingDoctor = $this->userRepository->find($userFile->getLatestCommentedDoctorID())?:null;
+        $patientEnt = $this->userRepository->find($processedFile->getPatientId())?:null;
+
+        return $this->render("medAccount/epf.html.twig", [
+            'content'               => $content,
+            'patient'               => $patientEnt,
+            'lastCommentingDoctor'  => $lastCommentingDoctor,
+            'lastSubmittedDoctor'   => $lastSubmittedTo,
+            'fileId'                => $file,
+            'lastUpdate'            => $processedFile->getUpdatedAt()->format('Y-m-d H:i:s')
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @Route("/epf", name="editProcessedFile")
+     */
+    public function processFileAsDoctor(Request $request, LogAnalyticsService $analytics)
+    {
+        if ($request->get('submit')) {
+
+            $processedFile = $this->getDoctrine()->getRepository(ProcessedFiles::class)->findProcessedFileByFileID($request->get('userFileId'));
+
+            if ($processedFile) {
+                /** @var ProcessedFiles $procFile */
+                $procFile = $processedFile[0];
+
+                $em = $this->getDoctrine()->getManager();
+                $content = [];
+                $content['email'] = $request->get('email');
+                $content['sex'] = $request->get('sex');
+                $content['cnp'] = $request->get('cnp');
+                $content['age'] = $request->get('age');
+                $content['institution'] = $request->get('institution');
+                $content['dates'] = $request->get('dates');
+                $content['resultSummary'] = $request->get('resultSummary');
+                $content['diagnostic'] = $request->get('diagnostic');
+                $content['userFileId'] =  $request->get('userFileId');
+
+                $proccedContent = $procFile->getContent();
+                $pContentDoctor = null;
+                if ($proccedContent) {
+                    $pContent = json_decode($proccedContent, true);
+                    $pContentDoctor = $pContent['docId'];
+                }
+                $content['docId'] = $pContentDoctor;
+
+                $jsonEncoded = json_encode($content);
+                $procFile->setContent($jsonEncoded);
+                $procFile->setUpdatedAt(new \DateTime());
+                $em->persist($procFile);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('medAccount'));
+            }
+            else {
+                throw new NotFoundHttpException('Could not find any processed file to edit.');
+            }
+        }
     }
 
 

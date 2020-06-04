@@ -85,7 +85,7 @@ class SubmitFormFromPatientController extends AbstractController
                 'sex'   => $sex,
                 'cnp'   => $cnp,
                 'age'   => $age,
-                'institute' => $institute,
+                'institution' => $institute,
                 'dates'     => $dates,
                 'diagnostic'=> $diagnostic,
                 'resultSummary' => $resultSummary,

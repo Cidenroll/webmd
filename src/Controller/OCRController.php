@@ -100,11 +100,12 @@ class OCRController extends AbstractController
         if ($processedFiles && $processedFile = $processedFiles[0]) {
             $content = json_decode($processedFile->getContent(), true);
 
+
             $contentObj = new \stdClass();
             $contentObj->sex = $content['sex'];
             $contentObj->cnp = $content['cnp'];
             $contentObj->age = $content['age'];
-            $contentObj->institute = $content['institute'];
+            $contentObj->institute = $content['institution'];
             $contentObj->dates = $content['dates'];
             $contentObj->diagnostic = $content['resultSummary'];
             $contentObj->highestVals = $content['diagnostic']?:null;

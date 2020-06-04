@@ -44,17 +44,22 @@
                     <tr bgcolor="#ff4662">
                         <td bgcolor="#ff4662"><label for="diagnostic">Diagnostic</label></td>
                         <td bgcolor="#ff4662">
-                            <ul style="list-style-type:none;">
-                                {% for key, val in patientInfo.highestVals %}
-                                    <li>{{ key }} : {{ val }}</li>
-                                {% endfor %}
-                            </ul>
                             {% set highvalues = '' %}
-                            {% for key, val in patientInfo.highestVals %}
-                                {% set highvalues= highvalues~" "~key~'='~val~"; " %}
-                            {% endfor %}
+                            {% if patientInfo.highestVals is iterable %}
+                                <ul style="list-style-type:none;">
+                                    {% for key, val in patientInfo.highestVals %}
+                                        <li>{{ key }} : {{ val }}</li>
+                                    {% endfor %}
+                                </ul>
 
-                            <input hidden name="diagnostic" value="{{ highvalues }}">
+                                {% for key, val in patientInfo.highestVals %}
+                                    {% set highvalues= highvalues~" "~key~'='~val~"; " %}
+                                {% endfor %}
+                            {% else %}
+                                {% set highvalues = patientInfo.highestVals %}
+                            {% endif %}
+
+                            <textarea style="width: 100%" name="diagnostic">{{ highvalues }}</textarea>
                         </td>
                     </tr>
                     {% endif %}
@@ -63,12 +68,12 @@
                             <td colspan="2">
                                 {% if patientInfo.selectedDoctorName is defined %}
                                     <i>
-                                        Latest submitted to doctor: <span style="color: red; font-weight: bold">{{ patientInfo.selectedDoctorName }}</span><br />
+                                        Latest submitted to doctor: <span style="font-weight: bold">{{ patientInfo.selectedDoctorName }}</span><br />
                                     </i>
                                 {% endif %}
                                 {% if lastCommentingDoctor is defined %}
                                     <i>
-                                        Latest commented: <span style="color: red; font-weight: bold">{{ lastCommentingDoctor }}</span><br />
+                                        Latest commented: <span style="font-weight: bold">{{ lastCommentingDoctor }}</span><br />
                                     </i>
                                 {% endif %}
                             </td>

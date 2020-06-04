@@ -49,6 +49,7 @@
                                 <td>
                                     <a title="View original file" style="font-weight: bold" href="{{ uploaded_asset(file.fileName) }}" target="_blank"><i class="fa fa-eye"></i></a>
                                     <a title="Medical comment" href="{{ path('medicalComment', {'file': key, 'id':  app.request.attributes.get('id') }) }}"><i class="fas fa-comment-medical"></i></a>
+                                    <a title="Edit processed file" href="{{ path('viewProcessedFile', {'file': key}) }}"><i class="fas fa-cog"></i></a>
                                 </td>
                             </tr>
                         {% endfor %}

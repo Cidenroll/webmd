@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <center>
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a> ({{ app.user.userType }})
+            </div>
+            <div class="container">
+                <div>
+                    <form method="post" action="{{ path('editProcessedFile') }}">
+                        <table class="table table-striped table-bordered ">
+                            <tr><th></th><th></th></tr>
+                            <tr>
+                                <td><label for="email">Patient</label></td>
+                                <td><input class="form-control input-group-sm"  type="text" name="email" value="{{ content.email }}" readonly></td>
+                            </tr>
+                            <tr>
+                                <td> <label for="sex">Sex</label></td>
+                                <td><input class="form-control input-group-sm" type="text" name="sex" value="{{ content.sex }}"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="cnp">CNP</label></td>
+                                <td><input class="form-control input-group-sm" type="text" name="cnp" value="{{ content.cnp }}"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="age">Age</label></td>
+                                <td><input class="form-control input-group-sm" type="text" name="age" value="{{ content.age }}"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="institution">Institution</label></td>
+                                <td><input class="form-control input-group-sm" type="text" name="institution" value="{{ content.institution }}"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="dates">Dates</label></td>
+                                <td><input class="form-control input-group-sm" type="text" name="dates" value="{{ content.dates }}"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="resultSummary">Result Summary</label></td>
+                                <td><textarea class="form-control rounded-0" rows="10" name="resultSummary">{{ content.resultSummary }}</textarea></td>
+                            </tr>
+
+                            <tr bgcolor="#ff4662">
+                                <td bgcolor="#ff4662"><label for="diagnostic">Diagnostic</label></td>
+                                <td bgcolor="#ff4662">
+                                    <textarea style="width: 100%" name="diagnostic">{{ content.diagnostic }}</textarea>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td colspan="2">
+                                    {% if lastSubmittedDoctor is defined and lastSubmittedDoctor.email %}
+                                        <i>
+                                            Latest submitted to doctor: <span style="font-weight: bold">{{ lastSubmittedDoctor.email }}</span><br />
+                                        </i>
+                                    {% endif %}
+                                    {% if lastCommentingDoctor.email is defined %}
+                                        <i>
+                                            Latest commented: <span style="font-weight: bold">{{ lastCommentingDoctor.email }}</span><br />
+                                        </i>
+                                    {% endif %}
+                                    <i>
+                                        Last updated on: <b>{{ lastUpdate }}</b>
+                                    </i>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <input type="hidden" name="userFileId" value="{{ fileId }}">
+                        <div class="form-group">
+                            <input type="submit" name="submit">
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+    </center>
+{% endblock %}
