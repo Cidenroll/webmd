@@ -70,5 +70,24 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return count($allUsers);
     }
 
+    public function getDoctorCount(): int
+    {
+        $allUsers = $this->createQueryBuilder('u')
+            ->where("u.userType = 'doctor'")
+            ->getQuery()
+            ->getResult()
+        ;
+        return count($allUsers);
+    }
+
+    public function getPatientCount(): int
+    {
+        $allUsers = $this->createQueryBuilder('u')
+            ->where("u.userType='patient'")
+            ->getQuery()
+            ->getResult()
+        ;
+        return count($allUsers);
+    }
 
 }

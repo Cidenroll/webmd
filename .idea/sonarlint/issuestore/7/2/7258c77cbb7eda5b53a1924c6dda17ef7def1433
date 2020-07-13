@@ -1,7 +1,7 @@
 
-	php:S1192x"^Define a constant instead of duplicating this literal "medform/annualcheck.html.twig" 3 times.(É‹±Äüÿÿÿÿ8™Çâ¦.
-e	php:S1192"HDefine a constant instead of duplicating this literal "details" 6 times.(­¨äÃ8ô’ó±¤.
-x	php:S3923§"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¹ğÄ÷8ô’ó±¤.
+e	php:S1192"HDefine a constant instead of duplicating this literal "details" 6 times.(­¨äÃ8ô’ó±¤.
 k	php:S1142O"OReduce the number of returns of this function 5, down to the maximum allowed 3.(¤·æ¹8‰°Ñé¥.
-x	php:S3923–"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¹ğÄ÷8ô’ó±¤.
+x	php:S3923¨"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¹ğÄ÷8ô’ó±¤.
+	php:S1192y"^Define a constant instead of duplicating this literal "medform/annualcheck.html.twig" 3 times.(É‹±Äüÿÿÿÿ8™Çâ¦.
 p	php:S3776O"TRefactor this function to reduce its Cognitive Complexity from 20 to the 15 allowed.(¤·æ¹8š¢ğ‘¦.
+x	php:S3923—"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¹ğÄ÷8ô’ó±¤.

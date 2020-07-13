@@ -12,6 +12,7 @@ namespace App\Controller;
 use App\Entity\UserFile;
 use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
+use App\Services\AWSTextractService;
 use App\Services\LogAnalyticsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

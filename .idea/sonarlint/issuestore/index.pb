@@ -113,3 +113,9 @@ U
 %src/Repository/UserFileRepository.php,3\b\3b63cdcee1e1bd5cfead9558600b8d43f335c09b
 R
 "templates/medAccount/epf.html.twig,c\f\cf7a03f2c3ada66c24e9ce953186efd11bfff2f7
+U
+%templates/security/register.html.twig,d\5\d5363e977c8f25895a67fe2143526c1a31b4084c
+S
+#src/Services/AWSTextractService.php,4\a\4a82a663e1a1e8b0e17a3ca413821e6f12cf5e30
+U
+%src/Repository/AnalyticRepository.php,0\0\00985083dc627784c64dbfc5cc253fd9c5bcf0fc

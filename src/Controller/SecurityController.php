@@ -65,18 +65,31 @@ class SecurityController extends AbstractController
             /** @var UserRepository $userRepository */
             $userRepository = $this->getDoctrine()->getRepository(User::class);
             $userCount = $userRepository->getUserCount();
-            if ($userCount && $userCount > $this->getParameter('user_registration_limit')) {
-
-                return $this->render('security/register.html.twig', [
-                    'maxNumberOfUsers' => 'Limit of registered users passed. Unable to register more users.',
-                    'registrationForm' => $form->createView()
-                ]);
-
-            }
-
 
             /** @var UserRegistrationFormModel $userModel */
             $userModel = $form->getData();
+
+            switch ($userModel->userType) {
+                case 'patient':
+                    $patientCount = $userRepository->getPatientCount();
+                    if ($patientCount > $this->getParameter('patient_limit')) {
+                        return $this->render('security/register.html.twig', [
+                            'maxNumberOfUsers' => 'Limit of registered patients passed. Unable to register more patients.',
+                            'registrationForm' => $form->createView()
+                        ]);
+                    }
+
+                    break;
+                case 'doctor':
+                    $doctorCount = $userRepository->getDoctorCount();
+                    if ($doctorCount > $this->getParameter('doctor_limit')) {
+                        return $this->render('security/register.html.twig', [
+                            'maxNumberOfUsers' => 'Limit of registered doctors passed. Unable to register more doctors.',
+                            'registrationForm' => $form->createView()
+                        ]);
+                    }
+                    break;
+            }
 
             $user = new User();
             $user->setEmail($userModel->email);
