@@ -72,7 +72,7 @@ class SecurityController extends AbstractController
             switch ($userModel->userType) {
                 case 'patient':
                     $patientCount = $userRepository->getPatientCount();
-                    if ($patientCount > $this->getParameter('patient_limit')) {
+                    if ($patientCount >= $this->getParameter('patient_limit')) {
                         return $this->render('security/register.html.twig', [
                             'maxNumberOfUsers' => 'Limit of registered patients passed. Unable to register more patients.',
                             'registrationForm' => $form->createView()
@@ -82,7 +82,7 @@ class SecurityController extends AbstractController
                     break;
                 case 'doctor':
                     $doctorCount = $userRepository->getDoctorCount();
-                    if ($doctorCount > $this->getParameter('doctor_limit')) {
+                    if ($doctorCount >= $this->getParameter('doctor_limit')) {
                         return $this->render('security/register.html.twig', [
                             'maxNumberOfUsers' => 'Limit of registered doctors passed. Unable to register more doctors.',
                             'registrationForm' => $form->createView()
