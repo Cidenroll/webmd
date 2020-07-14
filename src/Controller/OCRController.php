@@ -110,10 +110,16 @@ class OCRController extends AbstractController
             $contentObj->diagnostic = $content['resultSummary'];
             $contentObj->highestVals = $content['diagnostic']?:null;
             $contentObj->selectedDoctor = $content['docId']?:0;
-            $contentObj->selectedDoctorName = $this->getDoctrine()->getRepository(User::class)->find($content['docId'])->getEmail();
+            $contentObj->selectedDoctorName = '';
+            if ($content['docId']){
+                $contentObj->selectedDoctorName = $this->getDoctrine()->getRepository(User::class)->find($content['docId'])->getEmail();
+            }
 
-            $lastCommentingDoctor = $this->getDoctrine()->getRepository(User::class)->find($this->userFileRepository->find($id)->getLatestCommentedDoctorID());
-            $lastCommentDocEmail = null;
+            $lastCommentingDoctor =  $lastCommentDocEmail = null;
+            if ($this->userFileRepository->find($id)->getLatestCommentedDoctorID()) {
+                $lastCommentingDoctor = $this->getDoctrine()->getRepository(User::class)->find($this->userFileRepository->find($id)->getLatestCommentedDoctorID());
+            }
+
             if ($lastCommentingDoctor) {
                 $lastCommentDocEmail = $lastCommentingDoctor->getEmail();
             }
