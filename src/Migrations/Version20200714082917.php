@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200714070755 extends AbstractMigration
+final class Version20200714082917 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -30,7 +30,7 @@ final class Version20200714070755 extends AbstractMigration
         $this->addSql('CREATE TABLE processed_files (id INT AUTO_INCREMENT NOT NULL, file_id INT NOT NULL, patient_id INT NOT NULL, last_commenting_doctor_id INT NOT NULL, content LONGTEXT DEFAULT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE relations_dp2 (id INT AUTO_INCREMENT NOT NULL, doctor_id INT NOT NULL, patient_id INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE relations_pd2 (id INT AUTO_INCREMENT NOT NULL, patient_id INT NOT NULL, doctor_id INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, user_type VARCHAR(255) NOT NULL, telephone_number VARCHAR(50) DEFAULT NULL, profile_picture_path VARCHAR(500) DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, user_type VARCHAR(255) NOT NULL, telephone_number VARCHAR(50) DEFAULT NULL, profile_picture_path VARCHAR(500) DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE user_file (id INT AUTO_INCREMENT NOT NULL, user_id_id INT DEFAULT NULL, file_name VARCHAR(255) NOT NULL, doc_type VARCHAR(255) NOT NULL, doctor_id INT DEFAULT NULL, comment LONGTEXT DEFAULT NULL, file_content LONGBLOB NOT NULL, created_at DATETIME NOT NULL, latest_commented_doctor_id VARCHAR(255) NOT NULL, INDEX IDX_F61E7AD99D86650F (user_id_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE doctor_to_patient_user ADD CONSTRAINT FK_68A5C38877FEB8D8 FOREIGN KEY (doctor_to_patient_id) REFERENCES doctor_to_patient (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE doctor_to_patient_user ADD CONSTRAINT FK_68A5C388A76ED395 FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE');
