@@ -247,13 +247,13 @@ class OCRController extends AbstractController
                 'OCREngine' =>  '2',
             ]);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-        $serverOutput = curl_exec($ch);
-        curl_close($ch);
+//        $serverOutput = curl_exec($ch);
+//        curl_close($ch);
+//
+//        $textEngine2 = json_decode($serverOutput, true);
+//        $parsedTextEngine2 = $textEngine2['ParsedResults'][0]['ParsedText'];
 
-        $textEngine2 = json_decode($serverOutput, true);
-        $parsedTextEngine2 = $textEngine2['ParsedResults'][0]['ParsedText'];
-
-        $mergeEngines['OCRSPACEV2'] = $parsedTextEngine2;
+        $mergeEngines['OCRSPACEV2'] = "";
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,"http://api.ocr.space/parse/image");

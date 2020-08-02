@@ -119,3 +119,5 @@ S
 #src/Services/AWSTextractService.php,4\a\4a82a663e1a1e8b0e17a3ca413821e6f12cf5e30
 U
 %src/Repository/AnalyticRepository.php,0\0\00985083dc627784c64dbfc5cc253fd9c5bcf0fc
+M
+config/packages/doctrine.yaml,8\4\8407b4a9f249ef233d425138c0e8540c756c614a
