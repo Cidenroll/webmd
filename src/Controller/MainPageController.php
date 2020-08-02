@@ -12,7 +12,10 @@ namespace App\Controller;
 use App\Entity\UserFile;
 use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
+use App\Services\AWSTextractService;
+use App\Services\LogAnalyticsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
@@ -34,6 +37,8 @@ class MainPageController extends AbstractController
     /**
      * MainPageController constructor.
      * @param UserFileRepository $userFileRepository
+     * @param Security $security
+     * @param UserRepository $userRepository
      */
     public function __construct(UserFileRepository $userFileRepository, Security $security, UserRepository $userRepository)
     {
@@ -44,14 +49,28 @@ class MainPageController extends AbstractController
 
     /**
      * @Route("/", name="homepage")
+     * @param LogAnalyticsService $analytics
+     * @return Response|null
      */
-    public function homepage()
+    public function homepage(LogAnalyticsService $analytics): ?Response
     {
         $currentUser = $this->security->getUser();
+        $em = $this->getDoctrine()->getManager();
         if ($currentUser) {
 
             $userFiles = $this->userFileRepository->findByUserId($currentUser->getId());
 
+            //*****************************************************************************************************
+            // DELETE NONEXISTING USERFILES IF THEIR REFS DON'T EXIST IN THE LOCAL PUBLIC FOLDER
+
+            /** @var UserFile $userFile */
+//            foreach ($userFiles as $userFile) {
+//                if (!file_exists($this->getParameter('pdf_directory').'/'.$userFile->getFileName())) {
+//                    $em->remove($userFile);
+//                }
+//            }
+//            $em->flush();
+            //*****************************************************************************************************
 
             $ufList = [];
             /** @var UserFile $userFile */
@@ -65,24 +84,23 @@ class MainPageController extends AbstractController
                     }
                 }
 
-
                 $ufList[$userFile->getId()] = [
                     'fileName'  =>  $userFile->getFileName(),
+                    'imagePath' =>  $userFile->getImagePath(),
                     'doctorMail'    =>  $doctorMail,
                     'docType'  =>  $userFile->getDocType(),
                     'comment'   =>  $userFile->getComment(),
+                    'fileContent'   =>  $userFile->getFileContent()
                 ];
             }
-
 
             return $this->render('homepage/homepage.html.twig', [
                 'userFiles' =>  $ufList
             ]);
         }
-        else {
-            return $this->render('homepage/homepage.html.twig', [
-            ]);
-        }
+
+        return $this->render('homepage/homepage.html.twig', [
+        ]);
 
     }
 }

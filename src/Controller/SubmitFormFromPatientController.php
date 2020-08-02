@@ -9,10 +9,15 @@
 namespace App\Controller;
 
 
+use App\Entity\ProcessedFiles;
+use App\Entity\UserFile;
 use App\Repository\UserFileRepository;
 use App\Repository\UserRepository;
+use App\Services\LogAnalyticsService;
+use Nexmo\Client\Exception\Server;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
@@ -46,12 +51,15 @@ class SubmitFormFromPatientController extends AbstractController
      * @Route("/patientFormSubmit", name="patientFormSubmit")
      * @param Request $request
      * @param MailerInterface $mailer
-     * @param TexterInterface $textInterface
+     * @param LogAnalyticsService $analytics
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \Symfony\Component\Notifier\Exception\TransportExceptionInterface
      */
-    public function  submitPatientForm(Request $request)
+    public function  submitPatientForm(Request $request, MailerInterface $mailer, LogAnalyticsService $analytics)
     {
+        $currentUser = $this->security->getUser();
+        if (!$currentUser) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
         if ($request->getMethod() == 'POST'){
 
             $email = $request->get('email');
@@ -66,19 +74,68 @@ class SubmitFormFromPatientController extends AbstractController
             $checkMail = $request->get('checkMail');
             $userFileId = $request->get('userFileId');
 
+            /** @var UserFile $userFile */
+            $userFile = $this->userFileRepository->find($userFileId);
+            $lastCommentingDoctorId =  $userFile->getLatestCommentedDoctorID()?:"";
+
+            $content = [
+                'docId'         => $docId,
+                'reminder'     => $checkMail,
+                'email' => $email,
+                'sex'   => $sex,
+                'cnp'   => $cnp,
+                'age'   => $age,
+                'institution' => $institute,
+                'dates'     => $dates,
+                'diagnostic'=> $diagnostic,
+                'resultSummary' => $resultSummary,
+            ];
+
+            $em = $this->getDoctrine()->getManager();
+            $resultsProcessedFile = $em->getRepository(ProcessedFiles::class)->findProcessedFileByFileID($userFileId);
+
+            /** @var ProcessedFiles $currentProcessedFile */
+            if (!empty($resultsProcessedFile)) {
+                $currentProcessedFile = $resultsProcessedFile[0];
+                $currentProcessedFile->setUpdatedAt(new \DateTime());
+                $currentProcessedFile->setLastCommentingDoctorId((int)$lastCommentingDoctorId);
+                $currentProcessedFile->setPatientId($currentUser->getId());
+                $currentProcessedFile->setContent(json_encode($content));
+                $em->persist($currentProcessedFile);
+                $em->flush();
+            }
+            else {
+                $processedFile = new ProcessedFiles();
+                $processedFile->setFileId($userFileId);
+                $processedFile->setLastCommentingDoctorId((int)$lastCommentingDoctorId);
+                $processedFile->setPatientId($currentUser->getId());
+                $processedFile->setContent(json_encode($content));
+                $em->persist($processedFile);
+                $em->flush();
+            }
+
+
 
             if ($checkMail) {
 
+                $docEntity = $this->userRepository->find($docId);
+                $doctorTelephone = $docEntity->getTelephoneNumber();
+
+                /** @var User $currentPatient */
+                $currentPatient = $this->security->getUser();
+
+                if ($doctorTelephone) {
+
+                    $basic  = new \Nexmo\Client\Credentials\Basic('68fd2098', 'mhtjTAOl5c0tpML5');
+                    $client = new \Nexmo\Client($basic);
+
+                    try {
+                        $message = $client->message()->send(['to' => "+4" . $doctorTelephone, 'from' => 'MSING-SDM', 'text' => sprintf("Hello doctor %s! The pacient %s has submitted a file to you. Please log in to your MSING-SDM application to view the files and diagnosis.", $docEntity->getEmail(), $currentPatient->getEmail())]);
+                    } catch (\Nexmo\Client\Exception\Request $e) {
+                    } catch (Server $e) {
+                    }
+                }
             }
-
-//            if ($checkMail) {
-//                $notification = (new Notification('New Invoice'))
-//                    ->content('You got a new invoice for 15 EUR.')
-//                    ->importance(Notification::IMPORTANCE_HIGH);
-//
-//                $notifier->send($notification, new Recipient('wouter@wouterj.nl'));
-//            }
-
 
             // UPDATE USER FILE WITH THE CORRECT DOCTOR ID
             if ($userFile = $this->userFileRepository->find($userFileId)) {

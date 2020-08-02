@@ -14,14 +14,14 @@
         <p></p>
         <div class="row">
             <center>
-                <h5>Currently commenting on user:  {{ userMail }} ({{ fileName }})</h5>
+                <h5>Currently commenting on user:  {{ userMail }}</h5>
             </center>
         </div>
         <div class="row form-control-lg">
 
            <form method="post" action="">
                <div class="form-group ">
-                   <textarea class="form-control rounded-0 col-lg-12" cols="200%" rows="30" name="comment">{{ comment }}</textarea>
+                   <textarea name="comment" class="form-control rounded-0 col-lg-12" cols="200%" rows="30">{{ comment }}</textarea>
                </div>
                <div class="form-group">
                    <input type="submit" name="submit" value="Comment">

@@ -8,17 +8,18 @@
 
 namespace App\Controller;
 
-
 use App\Entity\User;
 use App\Entity\UserFile;
 use App\Form\UserFileFormType;
+use App\Services\LogAnalyticsService;
+use App\Services\UploaderHelper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
-
 
 
 class UploadMedicalFile extends AbstractController
@@ -35,53 +36,47 @@ class UploadMedicalFile extends AbstractController
 
     /**
      * @Route("/upload_md", name="uploadfile")
+     * @param Request $request
+     * @param UploaderHelper $uploaderHelper
+     * @param LogAnalyticsService $analytics
+     * @return RedirectResponse|Response
      */
-    public function upload(Request $request)
+    public function upload(Request $request, UploaderHelper $uploaderHelper, LogAnalyticsService $analytics)
     {
-        $form = $this->createForm(UserFileFormType::class);
-        $form->handleRequest($request);
-
         /** @var User $currentUser */
         $currentUser = $this->security->getUser();
+        if (!$currentUser) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+
+        $form = $this->createForm(UserFileFormType::class);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $pdfFile */
             $pdfFile = $form->get('fileName')->getData();
 
             if ($pdfFile) {
-                $originalFileName = pathinfo($pdfFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $newFileName = $currentUser->getId().'_'.$originalFileName."_".uniqid().".".$pdfFile->guessExtension();
+                if ($result = $uploaderHelper->upload($pdfFile, $currentUser->getId())) {
 
-                // Move the file to the directory where pdfs are stored
-                try {
-                    $pdfFile->move(
-                        $this->getParameter('pdf_directory'),
-                        $newFileName
-                    );
-                } catch (FileException $e) {
-                    return $this->redirect($this->generateUrl('uploadfile'), 404);
+                    $em = $this->getDoctrine()->getManager();
+                    $userFileEnt = new UserFile();
+                    $userFileEnt->setFileName($result['newFileName']);
+                    $userFileEnt->setDocType($form->get('docType')->getData());
+
+                    #/** @var UploadedFile $uploadedFile */
+                    $userFileEnt->setFileContent(base64_encode($form->get('fileName')->getData()));
+                    $userFileEnt->setUserId($currentUser);
+                    $em->persist($userFileEnt);
+                    $em->flush();
+
+                    return $this->redirect($this->generateUrl('homepage'));
                 }
-
-                $em = $this->getDoctrine()->getManager();
-                $userFileEnt = new UserFile();
-                $userFileEnt->setFileName($newFileName);
-                $userFileEnt->setDocType($form->get('docType')->getData());
-                $userFileEnt->setUserId($currentUser);
-
-                $em->persist($userFileEnt);
-                $em->flush();
             }
-
-            return $this->redirect($this->generateUrl('homepage', [
-                'userFile'  =>  $userFileEnt
-            ]));
-
         }
-
 
         return $this->render('upload/mdfile.html.twig', [
             'medicalFileForm'   =>  $form->createView(),
         ]);
     }
-
 }

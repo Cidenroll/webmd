@@ -17,26 +17,36 @@
             <p></p>
             <div class="row">
                 <div class="col-6 form-control-lg">
-                    <div>
-                        <span class="form-row"> {{ form_start(docToPatientForm)}} </span>
-                        {{ form_row(docToPatientForm.patientId) }}
-                        <button class="btn btn-primary btn-block" type="submit">
-                            Add patient
-                        </button>
-                        {{ form_end(docToPatientForm) }}
-
-                    </div>
+                    {% if remainingPatients > 0 %}
+                        <div>
+                            <span class="form-row"> {{ form_start(docToPatientForm)}} </span>
+                            {{ form_row(docToPatientForm.patientId) }}
+                            <button class="btn btn-primary btn-block" type="submit">
+                                Add patient
+                            </button>
+                            {{ form_end(docToPatientForm) }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-6 align-content-center">
                     <div class="table-responsive-lg">
                         <table class="table table-striped table-bordered d-lg-table-cell">
                             <tr>
-                                <th>Your patients</th><th>Number of files</th><th>Options</th>
+                                <th>Your patients</th><th>Profile</th><th>Number of files</th><th>Options</th>
                             </tr>
                             {% for key, patient in patientList %}
                                 <tr>
                                     <td>
                                        {{ key }}
+                                    </td>
+                                    <td><center>
+                                            {% if patient.profile %}
+
+                                                <a href="{{ profile_asset(patient.profile) }}" target="_blank">
+                                                    <img class="rounded-circle" src="{{ profile_asset(patient.profile) }}" style="max-height: 25px;"/>
+                                                </a>
+                                            {% endif %}
+                                        </center>
                                     </td>
                                     <td>
                                         {{ patient.count }}

@@ -4,16 +4,25 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    pdf_directory: '%kernel.project_dir%/public/uploads/pdfs/confirmed'
+    pdf_directory: '%kernel.project_dir%/public/uploads'
     pdf_failed: '%kernel.project_dir%/public/uploads/pdfs/failed'
     image_directory: '%kernel.project_dir%/public/uploads/images'
     ocr_apikey: '770a13071488957'
+    user_registration_limit: 12
+    uploads_base_url: 'https://%env(AWS_S3_ACCESS_BUCKET)%.s3.eu-central-1.amazonaws.com'
+    aws_access_key_id: '%env(aws_access_key_id)%'
+    aws_secret_access_key: '%env(aws_secret_access_key)%'
+    doctor_limit: '%env(DOCTOR_LIMIT)%'
+    patient_limit: '%env(PATIENT_LIMIT)%'
 
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $publicUploadFileSystem: '@oneup_flysystem.public_uploads_filesystem_filesystem'
+            $uploadsBaseUrl: '%uploads_base_url%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -29,3 +38,20 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    Symfony\Component\Asset\Context\RequestStackContext: '@assets.context'
+
+    Aws\S3\S3Client:
+        arguments:
+            -   version: '2006-03-01'
+                region: "eu-central-1"
+                credentials:
+                    key: '%env(AWS_S3_ACCESS_ID)%'
+                    secret: '%env(AWS_S3_ACCESS_SECRET)%'
+
+    App\Services\LogAnalyticsService:
+        arguments: ['@Symfony\Component\Security\Core\Security', '@Doctrine\ORM\EntityManagerInterface']
+        calls:
+            - [setCurrentUser]
+            - [setCurrentRoute, ['@request_stack']]
+            - [getCurrentRouteParams]
+            - [postStatisticLog]

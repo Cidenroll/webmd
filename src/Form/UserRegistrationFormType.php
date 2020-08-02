@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,10 +22,9 @@ class UserRegistrationFormType extends AbstractType
 
         $builder
             ->add('email', EmailType::class)
-            // don't use password: avoid EVER setting that on a
-            // field that might be persisted
             ->add('plainPassword', PasswordType::class)
             ->add('firstName')
+            ->add('telephone', TelType::class)
             ->add('agreeTerms', CheckboxType::class)
             ->add('userType', ChoiceType::class, [
                 'required'  =>  true,

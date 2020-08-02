@@ -18,53 +18,77 @@
                     </tr>
                     <tr>
                         <td> <label for="sex">Sex</label></td>
-                        <td><input class="form-control input-group-sm" type="text" name="sex" value="{{ patientInfo.sex }}" readonly></td>
+                        <td><input class="form-control input-group-sm" type="text" name="sex" value="{{ patientInfo.sex }}"></td>
                     </tr>
                     <tr>
                         <td><label for="cnp">CNP</label></td>
-                        <td><input class="form-control input-group-sm" type="text" name="cnp" value="{{ patientInfo.cnp }}" readonly></td>
+                        <td><input class="form-control input-group-sm" type="text" name="cnp" value="{{ patientInfo.cnp }}"></td>
                     </tr>
                     <tr>
                         <td><label for="age">Age</label></td>
-                        <td><input class="form-control input-group-sm" type="text" name="age" value="{{ patientInfo.age }}" readonly></td>
+                        <td><input class="form-control input-group-sm" type="text" name="age" value="{{ patientInfo.age }}"></td>
                     </tr>
                     <tr>
                         <td><label for="institution">Institution</label></td>
-                        <td><input class="form-control input-group-sm" type="text" name="institution" value="{{ patientInfo.institute }}" readonly></td>
+                        <td><input class="form-control input-group-sm" type="text" name="institution" value="{{ patientInfo.institute }}"></td>
                     </tr>
                     <tr>
                         <td><label for="dates">Dates</label></td>
-                        <td><input class="form-control input-group-sm" type="text" name="dates" value="{{ patientInfo.dates }}" readonly></td>
+                        <td><input class="form-control input-group-sm" type="text" name="dates" value="{{ patientInfo.dates }}"></td>
                     </tr>
                     <tr>
                         <td><label for="resultSummary">Result Summary</label></td>
-                        <td><textarea class="form-control rounded-0" rows="10" name="resultSummary" readonly>{{ patientInfo.diagnostic }}</textarea></td>
+                        <td><textarea class="form-control rounded-0" rows="10" name="resultSummary">{{ patientInfo.diagnostic }}</textarea></td>
                     </tr>
                     {% if patientInfo.highestVals is not empty %}
                     <tr bgcolor="#ff4662">
                         <td bgcolor="#ff4662"><label for="diagnostic">Diagnostic</label></td>
                         <td bgcolor="#ff4662">
-                            <ul style="list-style-type:none;">
-                                {% for key, val in patientInfo.highestVals %}
-                                    <li>{{ key }} : {{ val }}</li>
-                                {% endfor %}
-                            </ul>
                             {% set highvalues = '' %}
-                            {% for key, val in patientInfo.highestVals %}
-                                {% set highvalues= highvalues~" "~key~'='~val~"; " %}
-                            {% endfor %}
+                            {% if patientInfo.highestVals is iterable %}
+                                <ul style="list-style-type:none;">
+                                    {% for key, val in patientInfo.highestVals %}
+                                        <li>{{ key }} : {{ val }}</li>
+                                    {% endfor %}
+                                </ul>
 
-                            <input hidden name="diagnostic" value="{{ highvalues }}">
+                                {% for key, val in patientInfo.highestVals %}
+                                    {% set highvalues= highvalues~" "~key~'='~val~"; " %}
+                                {% endfor %}
+                            {% else %}
+                                {% set highvalues = patientInfo.highestVals %}
+                            {% endif %}
+
+                            <textarea style="width: 100%" name="diagnostic">{{ highvalues }}</textarea>
                         </td>
                     </tr>
                     {% endif %}
                     {% if patientDoctors is not empty %}
                         <tr>
+                            <td colspan="2">
+                                {% if patientInfo.selectedDoctorName is defined %}
+                                    <i>
+                                        Latest submitted to doctor: <span style="font-weight: bold">{{ patientInfo.selectedDoctorName }}</span><br />
+                                    </i>
+                                {% endif %}
+                                {% if lastCommentingDoctor is defined %}
+                                    <i>
+                                        Latest commented: <span style="font-weight: bold">{{ lastCommentingDoctor }}</span><br />
+                                    </i>
+                                {% endif %}
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td><label for="doctor">Assign doctor</label></td>
                             <td>
                                <select id="doctor" name="doctor">
                                    {% for doc in patientDoctors %}
-                                      <option value="{{ doc.id }}">{{ doc.email }}</option>
+                                       {% if patientInfo.selectedDoctor is defined and patientInfo.selectedDoctor == doc.id %}
+                                           <option value="{{ doc.id }}" selected>{{ doc.email }}</option>
+                                       {% else %}
+                                           <option value="{{ doc.id }}">{{ doc.email }}</option>
+                                       {% endif %}
                                    {% endfor %}
                                </select>
                             </td>

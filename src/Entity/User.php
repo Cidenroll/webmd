@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -52,6 +53,17 @@ class User implements UserInterface
      */
     private $doctorToPatients;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     * @Assert\NotBlank()
+     */
+    private $telephoneNumber;
+
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $profilePicturePath;
+
     public function __construct()
     {
         $this->userFiles = new ArrayCollection();
@@ -68,6 +80,11 @@ class User implements UserInterface
         return $this->email;
     }
 
+    /**
+     * Sets email for user entity
+     * @param string $email
+     * @return User
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -212,6 +229,30 @@ class User implements UserInterface
             $this->doctorToPatients->removeElement($doctorToPatient);
             $doctorToPatient->removePatientId($this);
         }
+
+        return $this;
+    }
+
+    public function getTelephoneNumber(): ?string
+    {
+        return $this->telephoneNumber;
+    }
+
+    public function setTelephoneNumber(?string $telephoneNumber): self
+    {
+        $this->telephoneNumber = $telephoneNumber;
+
+        return $this;
+    }
+
+    public function getProfilePicturePath(): ?string
+    {
+        return $this->profilePicturePath;
+    }
+
+    public function setProfilePicturePath(?string $profilePicturePath): self
+    {
+        $this->profilePicturePath = $profilePicturePath;
 
         return $this;
     }

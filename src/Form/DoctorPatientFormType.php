@@ -8,10 +8,7 @@
 
 namespace App\Form;
 
-
-use App\Entity\DoctorToPatient;
 use App\Entity\RelationsDp2;
-use App\Repository\DoctorToPatientRepository;
 use App\Repository\RelationsDp2Repository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -33,6 +30,7 @@ class DoctorPatientFormType extends AbstractType
     /**
      * UserFileFormType constructor.
      * @param Security $security
+     * @param RelationsDp2Repository $relationsDp2Repository
      */
     public function __construct(Security $security, RelationsDp2Repository $relationsDp2Repository )
     {

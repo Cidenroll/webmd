@@ -9,7 +9,7 @@
 namespace App\Parser;
 
 
-class MedicalReportParser
+class MedicalReportParser extends AbstractParser
 {
     private $analysisTextEngine1 = '';
     private $analysisTextEngine2 = '';
@@ -26,17 +26,18 @@ class MedicalReportParser
     private $tags = [ 'activ', 'inactiv', 'cerebral', 'leziuni', 'leziune', 'nerv' , 'rmn' ];
 
 
-    public function __construct($analysisText, array $detailsArr=[])
+    public function __construct(array $analysisText=[], array $detailsArr=[])
     {
-        $explodedText = explode('\n^^^^^%%^^^^^^\n', $analysisText);
-        $this->analysisTextEngine2 = $explodedText[0];
-        $this->analysisTextEngine1 = $explodedText[1];
-
+        if (isset($analysisText['OCRSPACEV2'])) {
+            $this->analysisTextEngine2 = $analysisText['OCRSPACEV2'];
+        }
+        if (isset($explodedText['OCRSPACEV1'])) {
+            $this->analysisTextEngine1 = $analysisText['OCRSPACEV1'];
+        }
         $this->details = $detailsArr;
-
     }
 
-    public function process()
+    public function process(): void
     {
         $sex = $cnp = $age = $institute = $datesString = $diagnostic = '';
         $highestValues = [];
@@ -48,7 +49,10 @@ class MedicalReportParser
         $textEngine2Array = array_filter(explode("\n",$this->analysisTextEngine2));
 
         // GET INSTITUTE
-        $institute = trim($textEngine1Array[0]);
+        if ($textEngine1Array) {
+            $institute = trim($textEngine1Array[0]);
+        }
+
 
         $this->analysisTextEngine1 = preg_replace("/\r\n|\t\n|\r|\t|\n/", ' ', $this->analysisTextEngine1);
         $this->analysisTextEngine2 = preg_replace("/\r\n|\t\n|\r|\t|\n/", ' ', $this->analysisTextEngine2);
@@ -59,7 +63,7 @@ class MedicalReportParser
         if (preg_match("/(?<gender>(\s+F\s+)|(\s+M\s+))/", $this->analysisTextEngine1, $matches)) {
             $sex = trim($matches['gender']);
         }
-        if (!$sex and preg_match("/(?<gender>(\s+F\s+)|(\s+M\s+))/", $this->analysisTextEngine2, $matches)) {
+        if (!$sex && preg_match("/(?<gender>(\s+F\s+)|(\s+M\s+))/", $this->analysisTextEngine2, $matches)) {
             $sex = trim($matches['gender']);
         }
 
@@ -68,7 +72,7 @@ class MedicalReportParser
         if (preg_match("/(?<cnp>([0-9]{13}))/", $this->analysisTextEngine1, $matches)) {
             $cnp = trim($matches['cnp']);
         }
-        if (!$cnp and preg_match("/(?<cnp>([0-9]{13}))/", $this->analysisTextEngine2, $matches)) {
+        if (!$cnp && preg_match("/(?<cnp>([0-9]{13}))/", $this->analysisTextEngine2, $matches)) {
             $cnp = trim($matches['cnp']);
         }
 
@@ -77,7 +81,7 @@ class MedicalReportParser
         if (preg_match("/(?<=:)(?<age>(\s*[0-9]{2})\s(?=ani))/", $this->analysisTextEngine1, $matches)) {
             $age = trim($matches['age']);
         }
-        if (!$age and preg_match("/(?<=:)(?<age>(\s*[0-9]{2})\s(?=ani))/", $this->analysisTextEngine2, $matches)) {
+        if (!$age && preg_match("/(?<=:)(?<age>(\s*[0-9]{2})\s(?=ani))/", $this->analysisTextEngine2, $matches)) {
             $age = trim($matches['age']);
         }
 
@@ -90,7 +94,7 @@ class MedicalReportParser
             }
             $datesString = implode('; ',$allDates);
         }
-        if (!$datesString and preg_match_all("/(?<date>([\d]{2}\.\d{2}\.\d{4}))/", $this->analysisTextEngine2, $matches)) {
+        if (!$datesString && preg_match_all("/(?<date>([\d]{2}\.\d{2}\.\d{4}))/", $this->analysisTextEngine2, $matches)) {
             $allDates = [];
             foreach ($matches[0] as $matchDate) {
                 $allDates[] = trim($matchDate);
@@ -98,7 +102,7 @@ class MedicalReportParser
             $datesString = implode('; ',$allDates);
         }
 
-        if ($this->details and $this->details['CreationDate']) {
+        if ($this->details && $this->details['CreationDate']) {
             $datesString .="\nData export: ".$this->details['CreationDate'];
         }
 
@@ -130,7 +134,10 @@ class MedicalReportParser
     }
 
 
-    public function getAllData()
+    /**
+     * @return array
+     */
+    public function getAllData(): array
     {
 
         return [

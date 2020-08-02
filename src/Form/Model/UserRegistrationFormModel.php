@@ -33,6 +33,12 @@ class UserRegistrationFormModel
     public $subscribeToNewsletter;
 
     /**
+     * @Assert\NotBlank(message="Set a phone number")
+     * @Assert\Length(max=50, maxMessage="Type in a shorter phone number")
+     */
+    public $telephone;
+
+    /**
      * @Assert\NotBlank()
      */
     public $userType;

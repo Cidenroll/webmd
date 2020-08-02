@@ -14,6 +14,7 @@ use App\Form\PatientDoctorFormType;
 use App\Repository\RelationsPd2Repository;
 
 use App\Repository\UserFileRepository;
+use App\Services\LogAnalyticsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,11 +44,17 @@ class PatientRelationController extends AbstractController
 
     /**
      * @Route("/pa/", name="patAccount")
+     * @param Request $request
+     * @param LogAnalyticsService $analytics
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function patientAccountController(Request $request)
+    public function patientAccountController(Request $request, LogAnalyticsService $analytics)
     {
         /** @var User $currentUser */
         $currentUser = $this->security->getUser();
+        if (!$currentUser) {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
         if ($currentUser->getUserType() != 'patient') {
             return $this->redirect($this->generateUrl('homepage'), 404);
         }
@@ -74,6 +81,7 @@ class PatientRelationController extends AbstractController
             }
         }
 
+
         $doctorDetails = [];
         $doctorsList = $this->pd2Repository->findAllRelationsToDoctorsByPatientId($currentUser->getId());
         foreach ($doctorsList as $doctor) {
@@ -85,6 +93,7 @@ class PatientRelationController extends AbstractController
 
             'PatientToDocForm' => $form->createView(),
             'docsList'   => $doctorDetails,
+            'doctorCount' => count($this->pd2Repository->getRemainingAvailableDoctorsForPatient($currentUser->getId()))
         ]);
     }
 

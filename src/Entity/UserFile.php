@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Services\UploaderHelper;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,6 +44,28 @@ class UserFile
      * @ORM\Column(type="text", nullable=true)
      */
     private $Comment;
+
+    /**
+     * @ORM\Column(type="blob")
+     */
+    private $fileContent;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $latestCommentedDoctorID;
+
+    public function __construct()
+    {
+        if (!$this->createdAt) {
+            $this->setCreatedAt(new \DateTime());
+        }
+    }
 
     public function getId(): ?int
     {
@@ -114,6 +137,47 @@ class UserFile
     public function setComment(?string $Comment): self
     {
         $this->Comment = $Comment;
+
+        return $this;
+    }
+
+    public function getFileContent()
+    {
+        return $this->fileContent;
+    }
+
+    public function setFileContent($fileContent): self
+    {
+        $this->fileContent = $fileContent;
+
+        return $this;
+    }
+
+    public function getImagePath(): string
+    {
+        return urlencode($this->getFileName());
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getLatestCommentedDoctorID(): ?string
+    {
+        return $this->latestCommentedDoctorID;
+    }
+
+    public function setLatestCommentedDoctorID(string $latestCommentedDoctorID): self
+    {
+        $this->latestCommentedDoctorID = $latestCommentedDoctorID;
 
         return $this;
     }

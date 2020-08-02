@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    MSINGMD|Profile picture
+{% endblock %}
+
+{% block body %}
+    <center>
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as <a style="font-weight: bold">{{ app.user.username }}</a> ({{ app.user.userType }})
+            </div>
+            <br />
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{ form_start(profilePicForm)}}
+                        {{ form_widget(profilePicForm) }}
+                        {{ form_end(profilePicForm) }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    </center>
+{% endblock %}
